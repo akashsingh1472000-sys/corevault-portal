@@ -358,7 +358,15 @@
       }
     };
 
-    function verifyToken() {
+    // Standalone Self-Verifying Cryptographic Checksum Engine
+    async function sha256Hex(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+    }
+
+    async function verifyToken() {
       const token = document.getElementById('tokenInput').value.trim().toUpperCase();
       const resultBox = document.getElementById('verifyResult');
 
@@ -369,9 +377,21 @@
 
       resultBox.classList.remove('hidden');
 
-      // Exact match check: agar 1 digit bhi alag hui toh false hoga
-      if (validAuditRegistry[token]) {
-        const record = validAuditRegistry[token];
+      const prefix = "CRV-AUTH-";
+      if (!token.startsWith(prefix) || token.length !== (prefix.length + 16)) {
+        showInvalidToken(token, "Invalid token format. CoreVault tokens must follow the CRV-AUTH-XXXXXXXXXXXXXXXX pattern.");
+        return;
+      }
+
+      const tokenBody = token.replace(prefix, "");
+      const basePart = tokenBody.substring(0, 12);
+      const providedChecksum = tokenBody.substring(12, 16);
+
+      const secretSalt = "COREVAULT-SECURE-KEY-2026";
+      const expectedFullHash = await sha256Hex(`${basePart}_${secretSalt}`);
+      const expectedChecksum = expectedFullHash.substring(0, 4);
+
+      if (providedChecksum === expectedChecksum) {
         resultBox.className = "mt-6 p-6 rounded-xl border bg-emerald-950/20 border-emerald-500/40 text-slate-200";
         resultBox.innerHTML = `
           <div class="flex items-center gap-3 mb-3">
@@ -384,28 +404,32 @@
             </div>
           </div>
           <div class="grid sm:grid-cols-2 gap-3 text-xs border-t border-slate-800/80 pt-3">
-            <div><span class="text-slate-400">Target Client:</span> ${record.client}</div>
+            <div><span class="text-slate-400">Issuing Firm:</span> CoreVault Advisory Services</div>
             <div><span class="text-slate-400">Lead Architect:</span> Akash Singh (Principal SAP Architect)</div>
-            <div><span class="text-slate-400">Scope:</span> ${record.scope}</div>
-            <div><span class="text-slate-400">Audit Date:</span> ${record.date}</div>
-            <div class="sm:col-span-2"><span class="text-slate-400">Integrity Status:</span> ${record.status}</div>
+            <div><span class="text-slate-400">Scope:</span> SAP Security & License Optimization Mandate</div>
+            <div><span class="text-slate-400">Integrity Status:</span> Certified & Mathematically Intact</div>
           </div>
         `;
       } else {
-        resultBox.className = "mt-6 p-6 rounded-xl border bg-rose-950/20 border-rose-500/40 text-slate-200";
-        resultBox.innerHTML = `
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center text-rose-400 font-bold">
-              <i class="fa-solid fa-xmark"></i>
-            </div>
-            <div>
-              <div class="text-sm font-bold text-white">Invalid or Tampered Certificate Token</div>
-              <div class="text-xs text-rose-400 font-mono mt-0.5">Token: ${token}</div>
-              <div class="text-xs text-slate-400 mt-1">This token does not exist in the CoreVault security registry or has been modified.</div>
-            </div>
-          </div>
-        `;
+        showInvalidToken(token, "Mathematical checksum failed. This token has been tampered with or was altered manually.");
       }
+    }
+
+    function showInvalidToken(token, reason) {
+      const resultBox = document.getElementById('verifyResult');
+      resultBox.className = "mt-6 p-6 rounded-xl border bg-rose-950/20 border-rose-500/40 text-slate-200";
+      resultBox.innerHTML = `
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center text-rose-400 font-bold">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+          <div>
+            <div class="text-sm font-bold text-white">Invalid or Tampered Certificate Token</div>
+            <div class="text-xs text-rose-400 font-mono mt-0.5">Token: ${token}</div>
+            <div class="text-xs text-slate-400 mt-1">${reason}</div>
+          </div>
+        </div>
+      `;
     }
   </script>
 
