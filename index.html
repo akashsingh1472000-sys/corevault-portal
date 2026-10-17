@@ -341,7 +341,23 @@
     priceSlider.addEventListener('input', updateCalculator);
     updateCalculator();
 
-    // 2. Cryptographic Token Verification Logic
+    // 2. Exact Cryptographic Registry Verification Logic
+    // yahan aapke official reports ke valid tokens ki registry rahegi:
+    const validAuditRegistry = {
+      "CRV-VERIFIED-913D6C7DD3315BC1": {
+        client: "Enterprise Client Corporation",
+        scope: "SAP License Optimization & SOW Engagement",
+        date: "17-Oct-2026",
+        status: "Certified & Unaltered Baseline"
+      },
+      "CRV-VERIFIED-72D6A268264BCCD2": {
+        client: "Avni Enterprise Corp",
+        scope: "Statutory License True-Up Mandate",
+        date: "17-Oct-2026",
+        status: "Certified & Unaltered Baseline"
+      }
+    };
+
     function verifyToken() {
       const token = document.getElementById('tokenInput').value.trim().toUpperCase();
       const resultBox = document.getElementById('verifyResult');
@@ -353,8 +369,9 @@
 
       resultBox.classList.remove('hidden');
 
-      // Check standard format of CoreVault generated tokens
-      if (token.startsWith("CRV-AUTH-") || token.startsWith("CRV-VERIFIED-") || token.length >= 12) {
+      // Exact match check: agar 1 digit bhi alag hui toh false hoga
+      if (validAuditRegistry[token]) {
+        const record = validAuditRegistry[token];
         resultBox.className = "mt-6 p-6 rounded-xl border bg-emerald-950/20 border-emerald-500/40 text-slate-200";
         resultBox.innerHTML = `
           <div class="flex items-center gap-3 mb-3">
@@ -367,10 +384,11 @@
             </div>
           </div>
           <div class="grid sm:grid-cols-2 gap-3 text-xs border-t border-slate-800/80 pt-3">
-            <div><span class="text-slate-400">Issuing Firm:</span> CoreVault Advisory Services</div>
+            <div><span class="text-slate-400">Target Client:</span> ${record.client}</div>
             <div><span class="text-slate-400">Lead Architect:</span> Akash Singh (Principal SAP Architect)</div>
-            <div><span class="text-slate-400">Scope:</span> SAP Security & License Optimization Mandate</div>
-            <div><span class="text-slate-400">Integrity Status:</span> Unaltered / Certified Baseline</div>
+            <div><span class="text-slate-400">Scope:</span> ${record.scope}</div>
+            <div><span class="text-slate-400">Audit Date:</span> ${record.date}</div>
+            <div class="sm:col-span-2"><span class="text-slate-400">Integrity Status:</span> ${record.status}</div>
           </div>
         `;
       } else {
@@ -381,8 +399,9 @@
               <i class="fa-solid fa-xmark"></i>
             </div>
             <div>
-              <div class="text-sm font-bold text-white">Invalid or Unrecognized Certificate Token</div>
-              <div class="text-xs text-rose-400">The token could not be verified in the CoreVault security registry.</div>
+              <div class="text-sm font-bold text-white">Invalid or Tampered Certificate Token</div>
+              <div class="text-xs text-rose-400 font-mono mt-0.5">Token: ${token}</div>
+              <div class="text-xs text-slate-400 mt-1">This token does not exist in the CoreVault security registry or has been modified.</div>
             </div>
           </div>
         `;
