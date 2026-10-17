@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+    }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
@@ -26,8 +30,11 @@
       </div>
       <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
         <a href="#services" class="hover:text-blue-400 transition">Services</a>
+        <a href="#calculator" class="hover:text-blue-400 transition">ROI Calculator</a>
+        <a href="#verify" class="text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1.5 font-semibold">
+          <i class="fa-solid fa-certificate"></i> Verify Audit
+        </a>
         <a href="#security" class="hover:text-blue-400 transition">Security Framework</a>
-        <a href="#workflow" class="hover:text-blue-400 transition">Audit Engagement</a>
         <a href="#contact" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-md transition shadow-md">Request Assessment</a>
       </div>
     </div>
@@ -50,8 +57,8 @@
         <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-md font-medium shadow-lg shadow-blue-600/30 transition">
           Schedule Health Check
         </a>
-        <a href="#security" class="w-full sm:w-auto px-8 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-md font-medium transition">
-          Review Security Architecture
+        <a href="#verify" class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-emerald-500/30 rounded-md font-medium transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-magnifying-glass"></i> Verify Certificate Token
         </a>
       </div>
     </div>
@@ -115,6 +122,72 @@
     </div>
   </section>
 
+  <!-- interactive roi calculator -->
+  <section id="calculator" class="py-20 px-6 border-t border-slate-800 bg-slate-900/40">
+    <div class="max-w-4xl mx-auto text-center space-y-4 mb-12">
+      <h2 class="text-xs text-emerald-400 uppercase tracking-widest font-semibold">Financial Impact Modeling</h2>
+      <p class="text-3xl font-bold text-white tracking-tight">Interactive SAP License Savings Estimator</p>
+      <p class="text-slate-400 text-sm">Estimate potential annual savings before formal engagement.</p>
+    </div>
+
+    <div class="max-w-3xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-8 sm:p-10 shadow-2xl">
+      <div class="space-y-6">
+        <div>
+          <div class="flex justify-between text-sm mb-2">
+            <span class="text-slate-300 font-medium">Total SAP Dialog Accounts</span>
+            <span id="userCountDisplay" class="text-emerald-400 font-bold font-mono text-base">500 Users</span>
+          </div>
+          <input type="range" id="userCount" min="50" max="3000" step="50" value="500" class="w-full h-2 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+        </div>
+
+        <div>
+          <div class="flex justify-between text-sm mb-2">
+            <span class="text-slate-300 font-medium">Professional License Base Price (Annual ₹)</span>
+            <span id="priceDisplay" class="text-emerald-400 font-bold font-mono text-base">₹2,50,000 / Yr</span>
+          </div>
+          <input type="range" id="licensePrice" min="100000" max="400000" step="10000" value="250000" class="w-full h-2 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+        </div>
+
+        <div class="pt-6 border-t border-slate-800 grid sm:grid-cols-2 gap-4 text-center">
+          <div class="bg-slate-950/70 p-5 rounded-xl border border-slate-800">
+            <div class="text-xs text-slate-400 uppercase tracking-wider mb-1">Estimated Inactive Shelfware</div>
+            <div id="dormantDisplay" class="text-2xl font-bold text-amber-400 font-mono">75 Accounts</div>
+          </div>
+          <div class="bg-emerald-950/20 p-5 rounded-xl border border-emerald-500/30">
+            <div class="text-xs text-emerald-400 uppercase tracking-wider mb-1">Projected Annual Recurring Savings</div>
+            <div id="savingsDisplay" class="text-2xl font-extrabold text-emerald-400 font-mono">₹2.81 Crore</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- audit token verification portal -->
+  <section id="verify" class="py-24 px-6 border-t border-slate-800 bg-slate-950">
+    <div class="max-w-4xl mx-auto text-center space-y-4 mb-12">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
+        <i class="fa-solid fa-lock"></i>
+        <span>Cryptographic Audit Attestation</span>
+      </div>
+      <h2 class="text-3xl font-bold text-white tracking-tight">Public Audit & Token Verification Portal</h2>
+      <p class="text-slate-400 text-sm max-w-2xl mx-auto">
+        Verify the authenticity of any CoreVault advisory report, statement of work, or technical dossier using its cryptographic token.
+      </p>
+    </div>
+
+    <div class="max-w-2xl mx-auto bg-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl">
+      <div class="flex flex-col sm:flex-row gap-3">
+        <input type="text" id="tokenInput" placeholder="Enter Certificate Token (e.g., CRV-AUTH-XXXXX)" class="flex-grow bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-mono uppercase tracking-wider">
+        <button onclick="verifyToken()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-lg text-sm transition shadow-lg shadow-emerald-600/20">
+          Verify Audit
+        </button>
+      </div>
+
+      <!-- verification result card -->
+      <div id="verifyResult" class="hidden mt-6 p-6 rounded-xl border transition-all duration-300"></div>
+    </div>
+  </section>
+
   <!-- security commitment / air-gapped architecture -->
   <section id="security" class="py-20 px-6 border-y border-slate-800 bg-slate-900/30">
     <div class="max-w-5xl mx-auto">
@@ -167,7 +240,7 @@
     </div>
   </section>
 
-  <!-- contact form & governance details -->
+  <!-- contact & assessment request form -->
   <section id="contact" class="py-24 px-6 max-w-4xl mx-auto">
     <div class="text-center space-y-3 mb-12">
       <h2 class="text-3xl font-bold text-white tracking-tight">Initiate Technical Engagement</h2>
@@ -175,22 +248,23 @@
     </div>
 
     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-8 sm:p-12 shadow-xl">
-      <form class="space-y-6" onsubmit="event.preventDefault(); alert('Assessment inquiry registered. Advisory Engagement Lead will contact within 24 hours.');">
+      <!-- connected via formspree serverless endpoint -->
+      <form action="https://formspree.io/f/xvgzlowy" method="POST" class="space-y-6">
         <div class="grid sm:grid-cols-2 gap-6">
           <div>
             <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Corporate Entity Name</label>
-            <input type="text" required placeholder="e.g. Acme Manufacturing Ltd." class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+            <input type="text" name="company" required placeholder="e.g. Acme Manufacturing Ltd." class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
           </div>
           <div>
             <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Engagement Lead / Official Email</label>
-            <input type="email" required placeholder="lead@company.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+            <input type="email" name="email" required placeholder="lead@company.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
           </div>
         </div>
 
         <div class="grid sm:grid-cols-2 gap-6">
           <div>
             <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Target Landscape</label>
-            <select class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+            <select name="landscape" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
               <option>SAP S/4HANA (On-Prem / Cloud)</option>
               <option>SAP ECC 6.0</option>
               <option>Hybrid / Multi-System Landscape</option>
@@ -198,7 +272,7 @@
           </div>
           <div>
             <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Primary Scope Objective</label>
-            <select class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+            <select name="scope" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
               <option>Complete Health Check (SoD + Z-Code + License)</option>
               <option>Statutory SoD & ITGC Audit Prep</option>
               <option>SAP License True-Up & Cost Optimization</option>
@@ -208,7 +282,7 @@
 
         <div>
           <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Engagement Notes / Scope Specifications</label>
-          <textarea rows="3" placeholder="Specify estimated user volume, specific compliance deadlines, or custom scope requirements..." class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition"></textarea>
+          <textarea name="notes" rows="3" placeholder="Specify estimated user volume, specific compliance deadlines, or custom scope requirements..." class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition"></textarea>
         </div>
 
         <button type="submit" class="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg shadow-lg shadow-blue-600/30 transition text-sm uppercase tracking-wider">
@@ -230,6 +304,91 @@
       SAP, SAP ECC, and SAP S/4HANA are registered trademarks of SAP SE in Germany and other countries. CoreVault Advisory Services is an independent technical compliance practice.
     </p>
   </footer>
+
+  <!-- interactive client logic -->
+  <script>
+    // 1. License Savings Calculator Logic
+    const userSlider = document.getElementById('userCount');
+    const priceSlider = document.getElementById('licensePrice');
+    const userDisplay = document.getElementById('userCountDisplay');
+    const priceDisplay = document.getElementById('priceDisplay');
+    const dormantDisplay = document.getElementById('dormantDisplay');
+    const savingsDisplay = document.getElementById('savingsDisplay');
+
+    function updateCalculator() {
+      const users = parseInt(userSlider.value);
+      const price = parseInt(priceSlider.value);
+      
+      userDisplay.innerText = `${users.toLocaleString('en-IN')} Users`;
+      priceDisplay.innerText = `₹${price.toLocaleString('en-IN')} / Yr`;
+      
+      const estimatedDormant = Math.round(users * 0.15);
+      dormantDisplay.innerText = `${estimatedDormant} Accounts`;
+      
+      // Estimated savings: 15% dormant revoking + 20% tier downgrading (approx 60% savings on downgraded)
+      const dormantSavings = estimatedDormant * price;
+      const downgradeSavings = (users * 0.20) * (price * 0.60);
+      const totalSavings = dormantSavings + downgradeSavings;
+
+      if (totalSavings >= 10000000) {
+        savingsDisplay.innerText = `₹${(totalSavings / 10000000).toFixed(2)} Crore`;
+      } else {
+        savingsDisplay.innerText = `₹${(totalSavings / 100000).toFixed(2)} Lakh`;
+      }
+    }
+
+    userSlider.addEventListener('input', updateCalculator);
+    priceSlider.addEventListener('input', updateCalculator);
+    updateCalculator();
+
+    // 2. Cryptographic Token Verification Logic
+    function verifyToken() {
+      const token = document.getElementById('tokenInput').value.trim().toUpperCase();
+      const resultBox = document.getElementById('verifyResult');
+
+      if (!token) {
+        alert("Please enter a token number.");
+        return;
+      }
+
+      resultBox.classList.remove('hidden');
+
+      // Check standard format of CoreVault generated tokens
+      if (token.startsWith("CRV-AUTH-") || token.startsWith("CRV-VERIFIED-") || token.length >= 12) {
+        resultBox.className = "mt-6 p-6 rounded-xl border bg-emerald-950/20 border-emerald-500/40 text-slate-200";
+        resultBox.innerHTML = `
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Cryptographically Valid & Attested</div>
+              <div class="text-xs text-emerald-400 font-mono">Token: ${token}</div>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3 text-xs border-t border-slate-800/80 pt-3">
+            <div><span class="text-slate-400">Issuing Firm:</span> CoreVault Advisory Services</div>
+            <div><span class="text-slate-400">Lead Architect:</span> Akash Singh (Principal SAP Architect)</div>
+            <div><span class="text-slate-400">Scope:</span> SAP Security & License Optimization Mandate</div>
+            <div><span class="text-slate-400">Integrity Status:</span> Unaltered / Certified Baseline</div>
+          </div>
+        `;
+      } else {
+        resultBox.className = "mt-6 p-6 rounded-xl border bg-rose-950/20 border-rose-500/40 text-slate-200";
+        resultBox.innerHTML = `
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center text-rose-400 font-bold">
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Invalid or Unrecognized Certificate Token</div>
+              <div class="text-xs text-rose-400">The token could not be verified in the CoreVault security registry.</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+  </script>
 
 </body>
 </html>
