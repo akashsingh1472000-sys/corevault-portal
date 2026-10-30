@@ -108,10 +108,19 @@
   <nav class="border-b border-slate-800/80 glass-nav sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
       
-      <!-- Brand Logo -->
-     <a href="#" class="flex items-center py-2">
-       <img src="logo.png" alt="CoreVault Advisory Services" class="h-12 w-auto object-contain">
-     </a>
+      <!-- Brand Logo with In-Browser Live Uploader -->
+<div class="flex items-center space-x-3 py-2">
+  <a href="#" class="flex items-center">
+    <!-- Default / Uploaded Logo Display -->
+    <img id="navLogoImg" src="logo.png" alt="CoreVault Advisory Services" class="h-12 w-auto object-contain">
+  </a>
+
+  <!-- Secret / Quick Upload Button -->
+  <label class="cursor-pointer text-[10px] bg-slate-800 hover:bg-slate-700 text-slate-300 px-2 py-1 rounded border border-slate-700 transition" title="Click to upload/change logo directly">
+    <i class="fa-solid fa-camera mr-1"></i> Upload
+    <input type="file" id="logoFileInput" accept="image/*" class="hidden" onchange="uploadLogoDirectly(this)">
+  </label>
+</div>
       <!-- Desktop Nav Links -->
       <div class="hidden lg:flex items-center space-x-7 text-sm font-medium text-slate-300">
         <a href="#capabilities" class="hover:text-brand-400 transition">Audit Capabilities</a>
@@ -700,6 +709,31 @@
 
   <!-- Client-Side Runtime JavaScript Engines -->
   <script>
+     
+     // 1. Check if user already uploaded a logo previously
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedLogo = localStorage.getItem('corevault_custom_logo');
+    if (savedLogo) {
+      const logoEl = document.getElementById('navLogoImg');
+      if (logoEl) logoEl.src = savedLogo;
+    }
+  });
+
+  // 2. Handle Direct In-Browser File Upload
+  function uploadLogoDirectly(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const base64Data = e.target.result;
+        // Set on image immediately
+        document.getElementById('navLogoImg').src = base64Data;
+        // Save in browser storage permanently
+        localStorage.setItem('corevault_custom_logo', base64Data);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
     // -------------------------------------------------------------
     // 1. Mobile Menu Drawer Toggle
     // -------------------------------------------------------------
