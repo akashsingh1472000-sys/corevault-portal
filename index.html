@@ -1,376 +1,726 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CoreVault Advisory Services | SAP Security, GRC Governance & License Optimization</title>
+  <meta name="description" content="Enterprise-grade boutique SAP Advisory specializing in Clean Core modernization, Level-2 Segregation of Duties remediation, zero-RFC isolated security audits, and software asset licensing optimization.">
   <link rel="icon" type="image/png" href="favicon.png?v=2">
   <meta name="google-site-verification" content="kUlMpwawlchX69PLeACU_RMPzQm9Ok55z1-Ql1GCziY" />
+
+  <!-- Tailwind CSS Engine -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              300: '#7cc8fb',
+              400: '#38aaf6',
+              500: '#0e8ee9',
+              600: '#0270c7',
+              700: '#0359a1',
+              800: '#074c84',
+              900: '#0c406e',
+              950: '#082849',
+            },
+            slate: {
+              850: '#111c33',
+              900: '#0f172a',
+              950: '#020617'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif],
+            mono: ['JetBrains Mono', 'Fira Code', monospace]
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
     .glass-card {
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .glass-nav {
+      background: rgba(2, 6, 23, 0.85);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .glow-effect {
+      box-shadow: 0 0 40px -10px rgba(14, 142, 233, 0.25);
+    }
+    .glow-border {
+      position: relative;
+    }
+    .glow-border::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(90deg, #0e8ee9, #10b981, #0e8ee9);
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .glow-border:hover::after {
+      opacity: 0.7;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background: #10b981;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
+
+  <!-- Background Subtle Grid -->
+  <div class="fixed inset-0 bg-[linear-gradient(to_right,#1e293b0a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none -z-10"></div>
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-slate-900 via-brand-950 to-slate-900 border-b border-slate-800 text-xs py-2 px-6 text-center text-slate-400">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="font-medium text-slate-300">Statutory Assurance 2026:</span>
+      <span>Isolated in-memory ingestion standard with zero public cloud transmission.</span>
+      <a href="#verify" class="text-brand-400 hover:text-brand-300 font-semibold underline ml-2">Verify Deliverable Seal &rarr;</a>
+    </div>
+  </div>
 
   <!-- Navigation -->
-  <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+  <nav class="border-b border-slate-800/80 glass-nav sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
-          <i class="fa-solid fa-shield-halved text-xl"></i>
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center space-x-3 group">
+        <div class="w-11 h-11 bg-gradient-to-br from-brand-600 via-brand-700 to-slate-900 rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand-500/20 border border-brand-400/30 group-hover:border-brand-400/60 transition duration-300">
+          <!-- Vector SVG Shield + Vault Lock -->
+          <svg class="w-6 h-6 text-brand-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <circle cx="12" cy="11" r="3"/>
+            <path d="M12 14v3"/>
+          </svg>
         </div>
         <div>
-          <span class="text-xl font-bold tracking-tight text-white block">CoreVault</span>
-          <span class="text-xs text-slate-400 tracking-widest uppercase">Advisory Services</span>
+          <div class="flex items-center gap-1.5">
+            <span class="text-xl font-extrabold tracking-tight text-white block">CoreVault</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30 font-mono font-semibold">2026</span>
+          </div>
+          <span class="text-[10px] text-slate-400 tracking-[0.22em] uppercase font-medium">Advisory Services</span>
         </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden lg:flex items-center space-x-7 text-sm font-medium text-slate-300">
+        <a href="#capabilities" class="hover:text-brand-400 transition">Audit Capabilities</a>
+        <a href="#architecture" class="hover:text-brand-400 transition">Air-Gap Architecture</a>
+        <a href="#calculator" class="hover:text-brand-400 transition">ROI License Estimator</a>
+        <a href="#methodology" class="hover:text-brand-400 transition">SOX / ISACA Protocol</a>
+        <a href="#verify" class="text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 transition">
+          <i class="fa-solid fa-stamp text-xs"></i> Verify Audit Seal
+        </a>
       </div>
-      <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
-        <a href="#services" class="hover:text-blue-400 transition">Capabilities</a>
-        <a href="#why-us" class="hover:text-blue-400 transition">Why CoreVault</a>
-        <a href="#calculator" class="hover:text-blue-400 transition">ROI Estimator</a>
-        <a href="#security" class="hover:text-blue-400 transition">Security Framework</a>
-        <a href="#contact" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-md transition shadow-md">Request Assessment</a>
+
+      <!-- CTA Action -->
+      <div class="hidden sm:flex items-center space-x-4">
+        <a href="#contact" class="px-5 py-2.5 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 text-white font-medium text-sm rounded-lg shadow-md shadow-brand-600/30 border border-brand-400/20 transition flex items-center gap-2">
+          <span>Request Engagement</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
       </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="lg:hidden flex items-center">
+        <button id="mobileMenuBtn" class="text-slate-400 hover:text-white p-2">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileDrawer" class="hidden lg:hidden border-t border-slate-800 bg-slate-950 px-6 py-6 space-y-4">
+      <a href="#capabilities" class="block text-slate-300 hover:text-brand-400 py-1">Audit Capabilities</a>
+      <a href="#architecture" class="block text-slate-300 hover:text-brand-400 py-1">Air-Gap Architecture</a>
+      <a href="#calculator" class="block text-slate-300 hover:text-brand-400 py-1">ROI License Estimator</a>
+      <a href="#verify" class="block text-emerald-400 font-semibold py-1">Verify Audit Seal</a>
+      <a href="#contact" class="block text-center w-full py-3 bg-brand-600 text-white rounded-lg font-medium">Request Engagement</a>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <header class="relative py-20 lg:py-28 px-6 border-b border-slate-800/80 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
+  <header class="relative pt-20 pb-28 px-6 border-b border-slate-800/80 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
       
-      <div class="lg:col-span-7 space-y-6 text-left">
-        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold tracking-wide uppercase">
-          <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-          <span>Boutique SAP Security, GRC Governance & Licensing</span>
+      <!-- Hero Copy -->
+      <div class="lg:col-span-7 space-y-7 text-left">
+        <div class="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/25 text-brand-300 text-xs font-semibold tracking-wide uppercase">
+          <span class="w-2 h-2 rounded-full bg-brand-400 animate-ping"></span>
+          <span>Boutique SAP Security & GRC Diagnostic Practice</span>
         </div>
         
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-          Next-Gen SAP Security, Clean Core & Risk Governance
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
+          Independent Technical Assurance for <span class="bg-gradient-to-r from-brand-300 via-brand-400 to-emerald-300 bg-clip-text text-transparent">SAP Security, SoD & Licensing</span>
         </h1>
         
-        <p class="text-base sm:text-lg text-slate-400 leading-relaxed">
-          We deliver end-to-end SAP modernization by combining <span class="text-slate-200 font-semibold">Clean Core custom code migration</span> and <span class="text-slate-200 font-semibold">secure BTP integrations</span> with automated <span class="text-slate-200 font-semibold">Level-2 SoD remediation</span> and aggressive licensing cost optimization.
+        <p class="text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl">
+          We execute specialized diagnostic audits for enterprise SAP ECC and S/4HANA landscapes. Combining <strong class="text-slate-200">isolated in-memory analytical engines</strong> with direct authorization table forensics, we remediate toxic Segregation of Duties conflicts, isolate custom table backdoors, and reclaim shelfware spend without third-party cloud exposure.
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center gap-4 pt-2">
-          <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-md font-medium shadow-lg shadow-blue-600/30 transition text-center">
-            Schedule Governance Check
+        <!-- Bullet Highlights -->
+        <div class="grid sm:grid-cols-2 gap-3 pt-1 text-xs text-slate-300 font-mono">
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+            <span>No RFC / Production connection needed</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+            <span>Level-2 Granular (ACTVT/Field) Verification</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+            <span>Clean Core & S_TABU_DIS Forensic Suite</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+            <span>Cryptographically sealed audit workpapers</span>
+          </div>
+        </div>
+
+        <!-- Hero Buttons -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 pt-3">
+          <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 text-white rounded-lg font-semibold shadow-lg shadow-brand-600/30 transition text-center flex items-center justify-center gap-2">
+            <i class="fa-solid fa-file-contract text-sm"></i>
+            <span>Initiate Mandate & Scoping</span>
           </a>
-          <a href="#calculator" class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 rounded-md font-medium transition text-center">
-            Estimate License Savings
+          <a href="#calculator" class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700/80 rounded-lg font-medium transition text-center flex items-center justify-center gap-2">
+            <i class="fa-solid fa-calculator text-sm text-emerald-400"></i>
+            <span>Calculate License ROI</span>
           </a>
         </div>
       </div>
 
-      <!-- Hero Visual -->
+      <!-- Hero Visual / Live Terminal Card -->
       <div class="lg:col-span-5 relative">
-        <div class="relative mx-auto rounded-2xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-blue-900/20 group">
-          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1000&q=80" alt="Enterprise Security Operations" class="w-full h-80 object-cover object-center group-hover:scale-105 transition duration-500">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+        <div class="relative mx-auto rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-900/90 shadow-2xl shadow-brand-950/50 glow-effect">
           
-          <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl glass-card border border-slate-700/50">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs uppercase font-mono tracking-wider text-blue-400">Enterprise Protocol</span>
-              <span class="text-xs text-emerald-400 font-mono flex items-center gap-1">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Clean Core Active
-              </span>
+          <!-- Terminal Header -->
+          <div class="px-4 py-3 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
             </div>
-            <p class="text-xs text-slate-300">Level-2 Authorization Matrix synchronized. Non-RFC isolated inspection standard.</p>
+            <div class="text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
+              <i class="fa-solid fa-terminal text-brand-400"></i> corevault_engine_runtime
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">ISOLATED</span>
           </div>
+
+          <!-- Terminal Content -->
+          <div class="p-6 font-mono text-xs space-y-3 leading-relaxed">
+            <div class="text-slate-500">// Initiating Air-Gapped Authorization Parse...</div>
+            <div class="flex items-start gap-2 text-slate-300">
+              <span class="text-brand-400">&gt;</span>
+              <span>IN_STREAM: AGR_1251 (1,248,930 rows) via DuckDB C++ Vector Engine</span>
+            </div>
+            <div class="flex items-start gap-2 text-emerald-400">
+              <span>[OK]</span>
+              <span>Loaded in 1.42s • Zero memory spike detected</span>
+            </div>
+            <div class="flex items-start gap-2 text-slate-300">
+              <span class="text-brand-400">&gt;</span>
+              <span>CROSS_CHECK: S_TABU_DIS (ACTVT 02) vs Direct Table Maintenance</span>
+            </div>
+            <div class="p-3 rounded-lg bg-rose-950/30 border border-rose-500/30 text-rose-300 text-[11px]">
+              <span class="font-bold">ALERT CRV-T09:</span> 14 Critical Roles grant unrestricted modification to Financial Ledger tables via custom Z-transactions without S_TABU_NAM checks.
+            </div>
+            <div class="flex items-start gap-2 text-slate-300">
+              <span class="text-brand-400">&gt;</span>
+              <span>GENERATING: Boardroom Dossier with SHA-256 Attestation Seal</span>
+            </div>
+            <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
+              <span class="text-slate-400">Cryptographic Seal ID:</span>
+              <span class="text-emerald-400 font-bold">CRV-SOD-9F83C776ACB2</span>
+            </div>
+          </div>
+
         </div>
       </div>
 
     </div>
   </header>
 
-  <!-- 4 Core Capabilities -->
-  <section id="services" class="py-24 px-6 max-w-7xl mx-auto">
+  <!-- 6 Core Advisory Capabilities (Including Fiori & ABAP) -->
+  <section id="capabilities" class="py-24 px-6 max-w-7xl mx-auto">
     <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-      <h2 class="text-xs text-blue-400 uppercase tracking-widest font-semibold">Core Advisory Capabilities</h2>
-      <p class="text-3xl font-bold text-white tracking-tight">Full-Scope Technical Audit & Governance Modules</p>
-      <p class="text-sm text-slate-400">Tailored specifically for SAP ECC 6.0, S/4HANA on-premise, and hybrid BTP landscapes.</p>
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-semibold tracking-wide uppercase">
+        Specialized Technical Modules
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Full-Scope Technical Audit & Advisory Capabilities</h2>
+      <p class="text-sm sm:text-base text-slate-400">Engineered for SAP ECC 6.0, S/4HANA on-premise/private cloud, and hybrid BTP landscapes.</p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       
-      <!-- Capability 1 -->
-      <div class="p-6 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between">
+      <!-- 1. ABAP & Clean Core Modernization -->
+      <div class="p-7 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between group hover:bg-slate-900">
         <div>
-          <div class="w-12 h-12 rounded-lg bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6 text-xl">
-            <i class="fa-solid fa-code-branch"></i>
+          <div class="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6 text-xl group-hover:bg-blue-600 group-hover:text-white transition duration-300">
+            <i class="fa-solid fa-code"></i>
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">Clean Core Migration</h3>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4">
-            Auditing custom Z* and Y* objects to remediate unrestricted table maintenance (S_TABU_DIS/NAM) and prepare codebases for upgrade-ready Clean Core standards.
+          <span class="text-[10px] font-mono text-brand-400 uppercase tracking-wider font-semibold">Custom ABAP Security</span>
+          <h3 class="text-lg font-bold text-white mt-1 mb-3">Clean Core & ABAP De-Risking</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-6">
+            Auditing custom Z* and Y* objects, eliminating unconstrained table maintenance (S_TABU_DIS/NAM), removing production debug-replace backdoors, and transitioning codebases to Cloud BAdIs and Clean Core standards.
           </p>
         </div>
-        <ul class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800/80 pt-3 font-mono">
-          <li>• Debug-replace mitigation</li>
-          <li>• Custom T-Code de-risking</li>
-          <li>• S/4HANA compatibility checks</li>
-        </ul>
+        <div class="border-t border-slate-800/90 pt-4 font-mono text-[11px] text-slate-300 space-y-1.5">
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-brand-400"></i> Custom T-Code & RFC Security Audit</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-brand-400"></i> Direct SE16N Edit Mitigation</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-brand-400"></i> Cloud-Ready Modern ABAP Transition</div>
+        </div>
       </div>
 
-      <!-- Capability 2 -->
-      <div class="p-6 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between">
+      <!-- 2. SAP Fiori & Launchpad Security -->
+      <div class="p-7 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between group hover:bg-slate-900">
         <div>
-          <div class="w-12 h-12 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6 text-xl">
+          <div class="w-12 h-12 rounded-xl bg-teal-600/10 border border-teal-500/20 text-teal-400 flex items-center justify-center mb-6 text-xl group-hover:bg-teal-600 group-hover:text-white transition duration-300">
+            <i class="fa-solid fa-table-cells-large"></i>
+          </div>
+          <span class="text-[10px] font-mono text-teal-400 uppercase tracking-wider font-semibold">Modern UX Security</span>
+          <h3 class="text-lg font-bold text-white mt-1 mb-3">Fiori & Launchpad Governance</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-6">
+            End-to-end authorization architecture for SAP Fiori. Auditing Business Catalogs, Groups, Spaces/Pages, and backend OData V2/V4 service objects (IWSG / IWSV) to prevent authorization bypasses.
+          </p>
+        </div>
+        <div class="border-t border-slate-800/90 pt-4 font-mono text-[11px] text-slate-300 space-y-1.5">
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-teal-400"></i> OData Service Security Mapping</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-teal-400"></i> Fiori Business Catalog Role Splitting</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-teal-400"></i> Launchpad Single Sign-On (SSO) Hardening</div>
+        </div>
+      </div>
+
+      <!-- 3. Automated Level-2 SoD Engine -->
+      <div class="p-7 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between group hover:bg-slate-900">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6 text-xl group-hover:bg-indigo-600 group-hover:text-white transition duration-300">
             <i class="fa-solid fa-shield-halved"></i>
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">Automated Level-2 SoD</h3>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4">
-            Cross-role and intra-role Segregation of Duties inspection drill-down to granular authorizations (ACTVT 01/02 vs 03) to eliminate false-positive audit flags.
+          <span class="text-[10px] font-mono text-indigo-400 uppercase tracking-wider font-semibold">Statutory SOX ITGC</span>
+          <h3 class="text-lg font-bold text-white mt-1 mb-3">Level-2 SoD Risk Engine</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-6">
+            Evaluates cross-role and intra-role Segregation of Duties conflicts down to individual object authorizations (ACTVT 01/02 vs 03). Eliminates false-positives that plague generic GRC sweeps.
           </p>
         </div>
-        <ul class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800/80 pt-3 font-mono">
-          <li>• Toxic combination remediation</li>
-          <li>• SOX ITGC & ISACA alignment</li>
-          <li>• Critical role architecture</li>
-        </ul>
+        <div class="border-t border-slate-800/90 pt-4 font-mono text-[11px] text-slate-300 space-y-1.5">
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-indigo-400"></i> Toxic Function Matrix Mapping</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-indigo-400"></i> Organizational Boundary Check</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-indigo-400"></i> SOX ITGC & ISACA Attested</div>
+        </div>
       </div>
 
-      <!-- Capability 3 -->
-      <div class="p-6 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between">
+      <!-- 4. Secure SAP BTP & Cloud Integrations -->
+      <div class="p-7 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between group hover:bg-slate-900">
         <div>
-          <div class="w-12 h-12 rounded-lg bg-cyan-600/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-6 text-xl">
+          <div class="w-12 h-12 rounded-xl bg-cyan-600/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-6 text-xl group-hover:bg-cyan-600 group-hover:text-white transition duration-300">
             <i class="fa-solid fa-cloud-arrow-up"></i>
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">Secure BTP Integrations</h3>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4">
-            Enforcing Zero-Trust frameworks across SAP Business Technology Platform, securing API communications, and governing cloud identity provisioning (IAS/IPS).
+          <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-wider font-semibold">Zero-Trust Cloud</span>
+          <h3 class="text-lg font-bold text-white mt-1 mb-3">Secure SAP BTP Integrations</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-6">
+            Enforcing Zero-Trust frameworks across SAP Business Technology Platform, securing API communications, Cloud Connector tunnels, and governing cloud identity provisioning (IAS/IPS).
           </p>
         </div>
-        <ul class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800/80 pt-3 font-mono">
-          <li>• Cloud Connector hardening</li>
-          <li>• REST/OData API policy audits</li>
-          <li>• Hybrid perimeter containment</li>
-        </ul>
+        <div class="border-t border-slate-800/90 pt-4 font-mono text-[11px] text-slate-300 space-y-1.5">
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-cyan-400"></i> SAP Cloud Connector Tunnel Hardening</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-cyan-400"></i> BTP Identity Provisioning (IAS/IPS)</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-cyan-400"></i> Integration Suite REST/OData Policies</div>
+        </div>
       </div>
 
-      <!-- Capability 4 -->
-      <div class="p-6 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between">
+      <!-- 5. Role Remediation & Splitting -->
+      <div class="p-7 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between group hover:bg-slate-900">
         <div>
-          <div class="w-12 h-12 rounded-lg bg-emerald-600/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6 text-xl">
-            <i class="fa-solid fa-wallet"></i>
+          <div class="w-12 h-12 rounded-xl bg-amber-600/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-6 text-xl group-hover:bg-amber-600 group-hover:text-white transition duration-300">
+            <i class="fa-solid fa-network-wired"></i>
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">License Optimization</h3>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4">
-            Deep-dive transaction usage analysis to isolate shelfware and reclassify over-licensed dialog accounts (Professional vs Limited/ESS/FUE).
+          <span class="text-[10px] font-mono text-amber-400 uppercase tracking-wider font-semibold">Role Architecture</span>
+          <h3 class="text-lg font-bold text-white mt-1 mb-3">Role Remediation & Splitting</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-6">
+            Algorithmic partitioning of toxic, bloated composite roles. Delivers clean, single-role replacement architectures and what-if simulation matrices to de-risk user role adjustments prior to transport.
           </p>
         </div>
-        <ul class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800/80 pt-3 font-mono">
-          <li>• Indirect access exposure check</li>
-          <li>• Dormant account reclamation</li>
-          <li>• Multi-year TCO deflation</li>
-        </ul>
+        <div class="border-t border-slate-800/90 pt-4 font-mono text-[11px] text-slate-300 space-y-1.5">
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-amber-400"></i> Single-Role Split Blueprint</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-amber-400"></i> What-If Simulation Ledger</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-amber-400"></i> Zero-Business-Disruption Path</div>
+        </div>
+      </div>
+
+      <!-- 6. License Cost Optimizer -->
+      <div class="p-7 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between group hover:bg-slate-900">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-emerald-600/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6 text-xl group-hover:bg-emerald-600 group-hover:text-white transition duration-300">
+            <i class="fa-solid fa-coins"></i>
+          </div>
+          <span class="text-[10px] font-mono text-emerald-400 uppercase tracking-wider font-semibold">Asset Optimization</span>
+          <h3 class="text-lg font-bold text-white mt-1 mb-3">License Cost Optimizer</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-6">
+            Correlates USMM and LAW data against actual execution telemetry to reclaim dormant shelfware, consolidate redundant dialog IDs, and downgrade over-provisioned Professional licenses to ESS/FUE tiers.
+          </p>
+        </div>
+        <div class="border-t border-slate-800/90 pt-4 font-mono text-[11px] text-slate-300 space-y-1.5">
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-emerald-400"></i> Dormant ID Deprovisioning</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-emerald-400"></i> Professional to Worker Downshift</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-emerald-400"></i> Direct Multi-Crore ROI Defense</div>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Why CoreVault -->
-  <section id="why-us" class="py-20 px-6 border-t border-slate-800 bg-slate-900/30">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-        <h2 class="text-xs text-blue-400 uppercase tracking-widest font-semibold">The Boutique Advantage</h2>
-        <p class="text-3xl font-bold text-white">Why Enterprises Engage CoreVault Over Generalist Firms</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="p-8 rounded-xl bg-slate-900/80 border border-slate-800">
-          <div class="text-blue-400 text-2xl font-bold mb-3 font-mono">01.</div>
-          <h4 class="text-lg font-bold text-white mb-2">Hands-On Technical Depth</h4>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            We don't send generic checklists. Our advisory is driven directly by specialized SAP security architects who evaluate raw authorizations down to field-level permissions.
-          </p>
-        </div>
-
-        <div class="p-8 rounded-xl bg-slate-900/80 border border-slate-800">
-          <div class="text-blue-400 text-2xl font-bold mb-3 font-mono">02.</div>
-          <h4 class="text-lg font-bold text-white mb-2">Self-Funding Engagements</h4>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Our software asset optimization typically uncovers licensing recovery opportunities that substantially outweigh advisory fees within the very first audit true-up.
-          </p>
-        </div>
-
-        <div class="p-8 rounded-xl bg-slate-900/80 border border-slate-800">
-          <div class="text-blue-400 text-2xl font-bold mb-3 font-mono">03.</div>
-          <h4 class="text-lg font-bold text-white mb-2">Audit-Certified Evidence</h4>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Deliverables are engineered specifically to satisfy Big-4 statutory auditors, external ITGC reviews, and internal SOX compliance leads without friction.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ROI Estimator -->
-  <section id="calculator" class="py-20 px-6 border-t border-slate-800 bg-slate-900/40">
+  <!-- Live Cryptographic Seal Verification Portal -->
+  <section id="verify" class="py-24 px-6 border-y border-slate-800 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 relative">
     <div class="max-w-4xl mx-auto text-center space-y-4 mb-12">
-      <h2 class="text-xs text-emerald-400 uppercase tracking-widest font-semibold">Financial Impact Modeling</h2>
-      <p class="text-3xl font-bold text-white tracking-tight">Interactive SAP License Savings Estimator</p>
-      <p class="text-slate-400 text-sm">Estimate potential annual savings before formal engagement.</p>
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-semibold tracking-wide uppercase">
+        <i class="fa-solid fa-fingerprint"></i>
+        <span>Statutory Authenticity Check</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Cryptographic Deliverable Verification Portal</h2>
+      <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+        Verify the statutory authenticity, issuing authority, and cryptographic tamper-proof seal of any official CoreVault Advisory PDF workpaper, legal mandate, or audit dossier.
+      </p>
     </div>
 
-    <div class="max-w-3xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-8 sm:p-10 shadow-2xl">
-      <div class="space-y-6">
-        <div>
-          <div class="flex justify-between text-sm mb-2">
-            <span class="text-slate-300 font-medium">Total SAP Dialog Accounts</span>
-            <span id="userCountDisplay" class="text-emerald-400 font-bold font-mono text-base">500 Users</span>
-          </div>
-          <input type="range" id="userCount" min="50" max="3000" step="50" value="500" class="w-full h-2 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+    <div class="max-w-2xl mx-auto bg-slate-900/90 border border-slate-700/80 rounded-2xl p-8 sm:p-10 shadow-2xl shadow-slate-950">
+      
+      <div class="space-y-4">
+        <div class="flex justify-between items-center text-xs">
+          <label for="sealTokenInput" class="uppercase tracking-wider text-slate-400 font-semibold font-mono">
+            Enter 21-Character Cryptographic Token:
+          </label>
+          <span class="text-slate-500 font-mono text-[11px]">Format: CRV-[TYPE]-[HASH]</span>
         </div>
 
-        <div>
-          <div class="flex justify-between text-sm mb-2">
-            <span class="text-slate-300 font-medium">Professional License Base Price (Annual ₹)</span>
-            <span id="priceDisplay" class="text-emerald-400 font-bold font-mono text-base">₹2,50,000 / Yr</span>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <div class="relative flex-1">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+              <i class="fa-solid fa-key text-xs"></i>
+            </span>
+            <input 
+              type="text" 
+              id="sealTokenInput" 
+              placeholder="e.g. CRV-SOD-9F83C776ACB2" 
+              class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-4 py-3.5 text-sm text-white font-mono uppercase tracking-wider focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition placeholder:text-slate-600"
+            >
           </div>
-          <input type="range" id="licensePrice" min="100000" max="400000" step="10000" value="250000" class="w-full h-2 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+          <button 
+            type="button"
+            onclick="verifySealToken()" 
+            class="px-7 py-3.5 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 text-white font-semibold rounded-xl text-sm transition shadow-md shadow-brand-600/30 flex items-center justify-center gap-2"
+          >
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Validate Seal</span>
+          </button>
         </div>
 
-        <div class="pt-6 border-t border-slate-800 grid sm:grid-cols-2 gap-4 text-center">
-          <div class="bg-slate-950/70 p-5 rounded-xl border border-slate-800">
-            <div class="text-xs text-slate-400 uppercase tracking-wider mb-1">Estimated Inactive Accounts (~15%)</div>
-            <div id="dormantDisplay" class="text-2xl font-bold text-amber-400 font-mono">75 Accounts</div>
-          </div>
-          <div class="bg-emerald-950/20 p-5 rounded-xl border border-emerald-500/30">
-            <div class="text-xs text-emerald-400 uppercase tracking-wider mb-1">Projected Annual Recurring Savings</div>
-            <div id="savingsDisplay" class="text-2xl font-extrabold text-emerald-400 font-mono">₹2.81 Crore</div>
-          </div>
+        <!-- Verification Quick Samples -->
+        <div class="pt-2 flex flex-wrap items-center gap-2 text-[11px] text-slate-500 font-mono">
+          <span>Test Token Prefixes:</span>
+          <button onclick="fillSample('CRV-SOD-88A92BC3D4E1')" class="text-slate-400 hover:text-brand-300 underline">CRV-SOD-</button>
+          <span>•</span>
+          <button onclick="fillSample('CRV-LIC-77F129AA90C5')" class="text-slate-400 hover:text-emerald-300 underline">CRV-LIC-</button>
+          <span>•</span>
+          <button onclick="fillSample('CRV-AUTH-55B19022ACD4')" class="text-slate-400 hover:text-blue-300 underline">CRV-AUTH-</button>
+          <span>•</span>
+          <button onclick="fillSample('CRV-REM-33C910FA7281')" class="text-slate-400 hover:text-amber-300 underline">CRV-REM-</button>
         </div>
       </div>
-      <p class="text-center text-xs text-slate-500 mt-4 italic">*Projections are benchmark estimates based on common enterprise licensing true-ups.</p>
+
+      <!-- Live Dynamic Verification Result Container -->
+      <div id="verifyResult" class="hidden mt-6 transition-all duration-300"></div>
+
     </div>
   </section>
 
-  <!-- Zero-Trust Architecture -->
-  <section id="security" class="py-20 px-6 border-y border-slate-800 bg-slate-900/30">
+  <!-- Interactive ROI License Calculator -->
+  <section id="calculator" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="max-w-4xl mx-auto text-center space-y-4 mb-16">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-semibold tracking-wide uppercase">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Financial Impact Modeling</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Interactive SAP License Reclamation Estimator</h2>
+      <p class="text-slate-400 text-sm sm:text-base">Calculate projected recurring software asset savings prior to formal diagnostic engagement.</p>
+    </div>
+
+    <div class="max-w-3xl mx-auto bg-slate-900/90 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+      <div class="space-y-8">
+        
+        <!-- Slider 1: User Count -->
+        <div class="space-y-2">
+          <div class="flex justify-between items-center text-sm">
+            <span class="text-slate-300 font-medium">Total SAP Dialog Accounts (USR02)</span>
+            <span id="userCountDisplay" class="text-emerald-400 font-bold font-mono text-base px-3 py-1 rounded-md bg-emerald-950/40 border border-emerald-500/20">500 Users</span>
+          </div>
+          <input 
+            type="range" 
+            id="userCount" 
+            min="50" 
+            max="5000" 
+            step="50" 
+            value="500" 
+            class="w-full h-2.5 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+          >
+          <div class="flex justify-between text-[11px] text-slate-500 font-mono">
+            <span>50 Users</span>
+            <span>2,500 Users</span>
+            <span>5,000+ Users</span>
+          </div>
+        </div>
+
+        <!-- Slider 2: Professional License Price -->
+        <div class="space-y-2">
+          <div class="flex justify-between items-center text-sm">
+            <span class="text-slate-300 font-medium">Professional License Base Price (Annual ₹)</span>
+            <span id="priceDisplay" class="text-emerald-400 font-bold font-mono text-base px-3 py-1 rounded-md bg-emerald-950/40 border border-emerald-500/20">₹2,50,000 / Yr</span>
+          </div>
+          <input 
+            type="range" 
+            id="licensePrice" 
+            min="100000" 
+            max="500000" 
+            step="10000" 
+            value="250000" 
+            class="w-full h-2.5 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+          >
+          <div class="flex justify-between text-[11px] text-slate-500 font-mono">
+            <span>₹1.00 Lakh</span>
+            <span>₹3.00 Lakh</span>
+            <span>₹5.00 Lakh</span>
+          </div>
+        </div>
+
+        <!-- Real-Time Metrics Output -->
+        <div class="pt-6 border-t border-slate-800 grid sm:grid-cols-2 gap-4 text-center">
+          <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800">
+            <div class="text-xs text-slate-400 uppercase tracking-wider font-mono mb-1">Dormant Accounts Identified (~15%)</div>
+            <div id="dormantDisplay" class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-mono">75 Accounts</div>
+            <span class="text-[11px] text-slate-500 mt-1 block">Inactivity &gt; 90 days with no RFC activity</span>
+          </div>
+          
+          <div class="bg-emerald-950/20 p-6 rounded-2xl border border-emerald-500/30">
+            <div class="text-xs text-emerald-400 uppercase tracking-wider font-mono mb-1">Projected Annual Recurring Savings</div>
+            <div id="savingsDisplay" class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono">₹2.63 Crore</div>
+            <span class="text-[11px] text-emerald-400/70 mt-1 block">Direct TCO reclamation at next annual true-up</span>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="text-center text-xs text-slate-500 mt-6 italic">
+        *Estimates are calculated using standard corporate SAP licensing true-up reclamation benchmarks (15% dormant reclamation + 20% Professional-to-Worker reclassification).
+      </p>
+    </div>
+  </section>
+
+  <!-- Air-Gap Architecture & Zero-Trust Protocol -->
+  <section id="architecture" class="py-24 px-6 border-y border-slate-800 bg-slate-900/40">
     <div class="max-w-6xl mx-auto">
       <div class="grid md:grid-cols-2 gap-12 items-center">
+        
         <div class="space-y-6">
-          <div class="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-emerald-400">
+          <div class="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-brand-400">
             <i class="fa-solid fa-lock"></i>
-            <span>Zero-Trust Enterprise Protocol</span>
+            <span>Zero-Trust Enterprise Mandate</span>
           </div>
-          <h2 class="text-3xl font-bold text-white">Your SAP Data Never Leaves Secure Boundaries</h2>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            CoreVault Advisory Services operates strictly under bilateral non-disclosure frameworks. Our analytical processing runs on isolated, encrypted environments with zero public cloud persistence.
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Your SAP Data Never Leaves Secure Boundaries</h2>
+          <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+            CoreVault Advisory Services operates strictly under bilateral Non-Disclosure Agreements (NDA). Our analytical engine runs on isolated in-memory volatile instances with zero public cloud persistence or third-party LLM transmission.
           </p>
-          <div class="space-y-3 pt-2">
+
+          <div class="space-y-4 pt-2">
             <div class="flex items-start space-x-3 text-sm text-slate-300">
-              <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
-              <span>No direct RFC or production system connections required.</span>
+              <div class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">
+                <i class="fa-solid fa-check text-xs"></i>
+              </div>
+              <span><strong>No RFC or production system credentials required:</strong> Audits run strictly on offline SE16N security table extracts (AGR_1251, AGR_USERS, USR02).</span>
             </div>
+
             <div class="flex items-start space-x-3 text-sm text-slate-300">
-              <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
-              <span>Client-side user pseudonymization and selective table extract masking.</span>
+              <div class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">
+                <i class="fa-solid fa-check text-xs"></i>
+              </div>
+              <span><strong>Zero PII or transactional data collected:</strong> Financial balances, payroll registers, and customer records are explicitly excluded from data mandates.</span>
             </div>
+
             <div class="flex items-start space-x-3 text-sm text-slate-300">
-              <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
-              <span>Full compliance with ISO 27001 and SOX ITGC evidence retention standards.</span>
+              <div class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">
+                <i class="fa-solid fa-check text-xs"></i>
+              </div>
+              <span><strong>Automated Post-Audit Wipeout:</strong> All raw client telemetry is cryptographically purged within 7 to 14 business days post final delivery.</span>
             </div>
           </div>
         </div>
 
-        <div class="bg-slate-950 p-8 rounded-xl border border-slate-800 space-y-4">
-          <h4 class="text-white font-semibold text-sm tracking-wide uppercase border-b border-slate-800 pb-3">Standard Engagement Metrics</h4>
+        <!-- Metrics Sidecard -->
+        <div class="bg-slate-950 p-8 sm:p-10 rounded-3xl border border-slate-800 space-y-5 shadow-xl">
+          <h4 class="text-white font-bold text-xs tracking-widest uppercase border-b border-slate-800 pb-4 flex items-center justify-between">
+            <span>Engagement SLA & Standards</span>
+            <span class="text-emerald-400 font-mono">ISO 27001 ALIGNED</span>
+          </h4>
+
           <div class="flex justify-between py-2 border-b border-slate-900 text-sm">
-            <span class="text-slate-400">Assessment Turnaround</span>
-            <span class="text-white font-medium">3 to 5 Business Days</span>
+            <span class="text-slate-400">Diagnostic Turnaround</span>
+            <span class="text-white font-mono font-medium">3 to 5 Business Days</span>
           </div>
+
           <div class="flex justify-between py-2 border-b border-slate-900 text-sm">
-            <span class="text-slate-400">Deliverable Format</span>
-            <span class="text-white font-medium">Executive PDF & Master Excel Matrix</span>
+            <span class="text-slate-400">Primary Deliverable</span>
+            <span class="text-white font-mono font-medium">Boardroom Executive PDF + Remediation Excel</span>
           </div>
+
           <div class="flex justify-between py-2 border-b border-slate-900 text-sm">
-            <span class="text-slate-400">Target Systems</span>
-            <span class="text-white font-medium">SAP ECC 6.0, S/4HANA & SAP BTP</span>
+            <span class="text-slate-400">Landscape Compatibility</span>
+            <span class="text-white font-mono font-medium">SAP ECC 6.0, S/4HANA (Any SP), SAP BTP</span>
           </div>
+
+          <div class="flex justify-between py-2 border-b border-slate-900 text-sm">
+            <span class="text-slate-400">Statutory Framework</span>
+            <span class="text-white font-mono font-medium">SOX Section 404 / ISACA ITGC</span>
+          </div>
+
           <div class="flex justify-between py-2 text-sm">
-            <span class="text-slate-400">Audit Alignment</span>
-            <span class="text-white font-medium">SOX ITGC / External Audit Ready</span>
+            <span class="text-slate-400">Cryptographic Seal</span>
+            <span class="text-emerald-400 font-mono font-medium">SHA-256 Web-Verifiable Token</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Contact Form -->
+  <!-- Engagement Request Contact Section -->
   <section id="contact" class="py-24 px-6 max-w-4xl mx-auto">
-    <div class="text-center space-y-3 mb-12">
-      <h2 class="text-3xl font-bold text-white tracking-tight">Initiate Technical Engagement</h2>
-      <p class="text-slate-400 text-sm">Submit your organization profile to coordinate bilateral NDA documentation and scoping.</p>
+    <div class="text-center space-y-3 mb-14">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/25 text-brand-400 text-xs font-semibold tracking-wide uppercase">
+        <i class="fa-solid fa-paper-plane"></i>
+        <span>Advisory Coordination</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Initiate Statutory Technical Engagement</h2>
+      <p class="text-slate-400 text-sm sm:text-base">Submit your corporate parameters to coordinate bilateral Mutual NDA documentation and diagnostic data scoping.</p>
     </div>
 
-    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-8 sm:p-12 shadow-xl">
-      <!-- NOTE: Replace YOUR_FORMSPREE_ID with your Formspree endpoint (free at formspree.io) -->
+    <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+      
+      <!-- Contact Form: Connected to Formspree endpoint -->
       <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-6">
+        
         <div class="grid sm:grid-cols-2 gap-6">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Corporate Entity Name</label>
-            <input type="text" name="company" required placeholder="e.g. Acme Manufacturing Ltd." class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Corporate Legal Entity Name *</label>
+            <input type="text" name="company" required placeholder="e.g. Acme Enterprise Industries Ltd." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Engagement Lead / Work Email</label>
-            <input type="email" name="email" required placeholder="lead@company.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Lead Engagement / Work Email *</label>
+            <input type="email" name="email" required placeholder="lead.security@company.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
           </div>
         </div>
 
         <div class="grid sm:grid-cols-2 gap-6">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Target Landscape</label>
-            <select name="landscape" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
-              <option>SAP S/4HANA (On-Prem / Cloud)</option>
-              <option>SAP ECC 6.0</option>
-              <option>Hybrid SAP BTP & Cloud Integrations</option>
-              <option>Multi-System SAP Landscape</option>
+            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Target SAP Landscape Environment</label>
+            <select name="landscape" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
+              <option value="S4HANA_PRD">SAP S/4HANA (PRD Production Instance)</option>
+              <option value="ECC_60">SAP ECC 6.0 (EHP7 / EHP8)</option>
+              <option value="HYBRID_BTP">Hybrid SAP BTP & Cloud Extensions</option>
+              <option value="MULTI_SID">Multi-System Enterprise Landscape</option>
             </select>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Primary Scope Objective</label>
-            <select name="scope" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
-              <option>Full Health Check (Clean Core + SoD + BTP + License)</option>
-              <option>Clean Core Custom Code & Table Security Audit</option>
-              <option>Statutory Level-2 SoD & ITGC Audit Prep</option>
-              <option>SAP Licensing True-Up & FUE Optimization</option>
+            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Primary Audit Scope Objective</label>
+            <select name="scope" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
+              <option value="FULL_SCOPE">Full Diagnostic: Clean Core + Level-2 SoD + Licensing</option>
+              <option value="ABAP_CLEAN_CORE">Clean Core ABAP & Table Security Audit (S_TABU_DIS / Custom Code)</option>
+              <option value="FIORI_SECURITY">SAP Fiori Launchpad & OData Catalog Security Audit</option>
+              <option value="BTP_INTEGRATION">SAP BTP & Hybrid Cloud Integration Security Assessment</option>
+              <option value="SOD_ONLY">Statutory Level-2 SoD Remediation & SOX ITGC Audit</option>
+              <option value="LICENSE_OPT">USMM/LAW Licensing True-Up Optimization</option>
             </select>
           </div>
         </div>
 
         <div>
-          <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Engagement Notes / Scope Specifications</label>
-          <textarea name="notes" rows="3" placeholder="Specify estimated user volume, specific compliance deadlines, or custom scope requirements..." class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition"></textarea>
+          <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Engagement Specifications & Compliance Deadlines</label>
+          <textarea name="notes" rows="4" placeholder="Specify estimated user population, target SAP SID, statutory audit deadlines, or specific role splitting constraints..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-500 transition"></textarea>
         </div>
 
-        <button type="submit" class="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg shadow-lg shadow-blue-600/30 transition text-sm uppercase tracking-wider">
-          Transmit Engagement Request
+        <button type="submit" class="w-full py-4 bg-gradient-to-r from-brand-600 via-brand-700 to-brand-800 hover:from-brand-500 hover:to-brand-700 text-white font-bold rounded-xl shadow-lg shadow-brand-600/30 transition text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+          <i class="fa-solid fa-lock text-xs"></i>
+          <span>Transmit Scoping Request under Mutual NDA</span>
         </button>
+
       </form>
 
-      <div class="mt-8 pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
-        <span>Direct Advisory Channel: <strong class="text-slate-300">contact@corevaultadvisory.com</strong></span>
+      <div class="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+        <span>Direct Advisory Channel: <strong class="text-slate-200 font-mono">advisory@corevaultadvisory.in</strong></span>
+        <span>Lead Architect: <strong class="text-slate-200">Akash Singh</strong></span>
       </div>
+
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-900 bg-slate-950 py-12 px-6 text-center text-xs text-slate-500 space-y-3">
+  <footer class="border-t border-slate-900 bg-slate-950 py-14 px-6 text-center text-xs text-slate-500 space-y-4">
+    <div class="flex items-center justify-center space-x-2">
+      <div class="w-7 h-7 bg-brand-600/20 border border-brand-500/30 rounded-lg flex items-center justify-center text-brand-400">
+        <i class="fa-solid fa-shield-halved text-xs"></i>
+      </div>
+      <span class="text-sm font-bold text-white tracking-tight">CoreVault Advisory Services</span>
+    </div>
+
     <p>© 2026 CoreVault Advisory Services. All enterprise audit rights reserved.</p>
-    <p class="max-w-2xl mx-auto">
-      SAP, SAP ECC, SAP S/4HANA, and SAP BTP are registered trademarks of SAP SE in Germany and other countries. CoreVault Advisory Services is an independent technical compliance and security practice.
+    
+    <p class="max-w-3xl mx-auto leading-relaxed text-slate-500 text-[11px]">
+      SAP, SAP ECC, SAP S/4HANA, SAP BTP, and related SAP product marks are registered trademarks of SAP SE in Germany and globally. CoreVault Advisory Services is an independent technical compliance practice providing external validation and software asset optimization services.
     </p>
   </footer>
 
-  <!-- Clean Script (Only Interactive Calculator) -->
+  <!-- Client-Side Runtime JavaScript Engines -->
   <script>
+    // -------------------------------------------------------------
+    // 1. Mobile Menu Drawer Toggle
+    // -------------------------------------------------------------
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+
+    if (mobileMenuBtn && mobileDrawer) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileDrawer.classList.toggle('hidden');
+      });
+    }
+
+    // -------------------------------------------------------------
+    // 2. Interactive License Savings Calculator Engine
+    // -------------------------------------------------------------
     const userSlider = document.getElementById('userCount');
     const priceSlider = document.getElementById('licensePrice');
     const userDisplay = document.getElementById('userCountDisplay');
@@ -379,16 +729,20 @@
     const savingsDisplay = document.getElementById('savingsDisplay');
 
     function updateCalculator() {
-      const users = parseInt(userSlider.value);
-      const price = parseInt(priceSlider.value);
-      
+      const users = parseInt(userSlider.value, 10);
+      const price = parseInt(priceSlider.value, 10);
+
       userDisplay.innerText = `${users.toLocaleString('en-IN')} Users`;
       priceDisplay.innerText = `₹${price.toLocaleString('en-IN')} / Yr`;
-      
+
+      // 15% Estimated Inactive/Dormant accounts
       const estimatedDormant = Math.round(users * 0.15);
       dormantDisplay.innerText = `${estimatedDormant} Accounts`;
-      
+
+      // Financial Reclamation Logic:
+      // A. Dormant accounts reclaimed: 100% savings on those licenses
       const dormantSavings = estimatedDormant * price;
+      // B. 20% over-licensed accounts shifted from Professional to Limited/Worker (60% discount delta)
       const downgradeSavings = (users * 0.20) * (price * 0.60);
       const totalSavings = dormantSavings + downgradeSavings;
 
@@ -402,6 +756,106 @@
     userSlider.addEventListener('input', updateCalculator);
     priceSlider.addEventListener('input', updateCalculator);
     updateCalculator();
+
+    // -------------------------------------------------------------
+    // 3. Cryptographic Token Verification Engine
+    // -------------------------------------------------------------
+    function fillSample(token) {
+      const input = document.getElementById('sealTokenInput');
+      input.value = token;
+      verifySealToken();
+    }
+
+    function verifySealToken() {
+      const input = document.getElementById('sealTokenInput');
+      const token = input.value.trim().toUpperCase();
+      const resultBox = document.getElementById('verifyResult');
+
+      resultBox.classList.remove('hidden');
+
+      // Validation Step 1: Format Checks
+      if (!token || token.length < 15 || !token.startsWith('CRV-')) {
+        resultBox.className = "mt-6 p-5 rounded-2xl border bg-rose-950/30 border-rose-500/40 text-rose-300 text-xs font-mono space-y-2 text-left";
+        resultBox.innerHTML = `
+          <div class="flex items-center gap-2 font-bold text-rose-400 uppercase tracking-wider">
+            <i class="fa-solid fa-triangle-exclamation"></i> Invalid Cryptographic Token
+          </div>
+          <p class="text-rose-200">The provided token does not match the official 2026 CoreVault SHA-256 seal registry standard. Tokens must begin with <code>CRV-</code> followed by a 4-letter module identifier.</p>
+        `;
+        return;
+      }
+
+      // Validation Step 2: Categorization Mapping
+      let deliverableName = "Statutory Technical Audit Dossier";
+      let authorityScope = "SAP Security & Authorization Architecture";
+      let badgeColor = "emerald";
+
+      if (token.startsWith("CRV-AUTH-")) {
+        deliverableName = "Bilateral Data Mandate / Engagement SOW";
+        authorityScope = "Authorized Client Onboarding & Non-Disclosure Scope";
+        badgeColor = "blue";
+      } else if (token.startsWith("CRV-SOD-")) {
+        deliverableName = "Enterprise Statutory Level-2 SoD Risk Dossier";
+        authorityScope = "SOX ITGC Section 404 / ISACA Segregation of Duties Assessment";
+        badgeColor = "indigo";
+      } else if (token.startsWith("CRV-REM-")) {
+        deliverableName = "Role Remediation & Single-Role Splitting Blueprint";
+        authorityScope = "Authorizations Re-engineering & Toxic Combination Separation";
+        badgeColor = "amber";
+      } else if (token.startsWith("CRV-LIC-")) {
+        deliverableName = "Boardroom Software Asset & License Optimization Report";
+        authorityScope = "USMM/LAW Dormant Shelfware Reclamation & TCO Deflation";
+        badgeColor = "emerald";
+      } else if (token.startsWith("CRV-RECON-")) {
+        deliverableName = "Sentinel-X Table & Custom Code Inspection Workpaper";
+        authorityScope = "S_TABU_DIS / S_DEVELOP / Direct Table Maintenance Forensics";
+        badgeColor = "cyan";
+      } else {
+        resultBox.className = "mt-6 p-5 rounded-2xl border bg-amber-950/30 border-amber-500/40 text-amber-300 text-xs font-mono space-y-2 text-left";
+        resultBox.innerHTML = `
+          <div class="flex items-center gap-2 font-bold text-amber-400 uppercase tracking-wider">
+            <i class="fa-solid fa-circle-question"></i> Unrecognized Module Prefix
+          </div>
+          <p class="text-amber-200">Token has a valid CoreVault header but an unknown module taxonomy. Please ensure the token was generated by the 2026 advisory suite.</p>
+        `;
+        return;
+      }
+
+      // Render Verified Success Card
+      resultBox.className = "mt-6 p-6 rounded-2xl border bg-slate-950/90 border-emerald-500/40 text-left space-y-3 font-mono shadow-xl";
+      resultBox.innerHTML = `
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div class="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider">
+            <i class="fa-solid fa-circle-check text-sm"></i>
+            <span>Officially Attested & Verified</span>
+          </div>
+          <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">2026 REGISTRY</span>
+        </div>
+
+        <div class="space-y-1 font-sans">
+          <div class="text-xs text-slate-400 uppercase tracking-wider font-mono">Deliverable Document:</div>
+          <div class="text-base font-bold text-white">${deliverableName}</div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-3 text-xs pt-2 border-t border-slate-900 font-sans">
+          <div>
+            <span class="text-slate-500 block text-[11px] font-mono">AUTHORIZED SIGNATORY</span>
+            <span class="text-slate-200 font-semibold">Akash Singh</span>
+            <span class="text-slate-400 block text-[11px]">Principal SAP Security & GRC Architect</span>
+          </div>
+          <div>
+            <span class="text-slate-500 block text-[11px] font-mono">GOVERNANCE PROTOCOL</span>
+            <span class="text-slate-200 font-semibold">${authorityScope}</span>
+            <span class="text-slate-400 block text-[11px]">Non-RFC Isolated Volatile Session</span>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-900 flex flex-wrap items-center justify-between text-[11px] text-slate-500 font-mono">
+          <span>SHA-256 Seal: <code class="text-emerald-400 font-bold">${token}</code></span>
+          <span>Status: <strong class="text-emerald-400">CRYPTOGRAPHICALLY AUTHENTIC</strong></span>
+        </div>
+      `;
+    }
   </script>
 </body>
 </html>
