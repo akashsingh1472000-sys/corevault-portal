@@ -948,7 +948,7 @@
       <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-card">
         
         <!-- Form configured for custom mail handler or Formspree -->
-        <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-6">
+        <form id="mandateForm" class="space-y-6">
           
           <div class="grid sm:grid-cols-2 gap-6">
             <div>
@@ -1202,6 +1202,66 @@
           <span>Status: <strong class="text-emerald-700">CRYPTOGRAPHICALLY AUTHENTIC</strong></span>
         </div>
       `;
+    }
+  </script>
+<script>
+    // -------------------------------------------------------------
+    // CoreVault Secure Mandate Form Submission (Google Sheets + Zoho Mail)
+    // -------------------------------------------------------------
+    const mandateForm = document.getElementById('mandateForm');
+    const GOOGLE_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzXn1JSajl5M6mDqARyn4jdHuKdJV9I6LRtsfm3kMBBHJU6y4NqoHrDg7xEhDRCh9Tz/exec';
+
+    if (mandateForm) {
+      mandateForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const submitBtn = mandateForm.querySelector('button[type="submit"]');
+        const originalBtnHTML = submitBtn.innerHTML;
+
+        // बटन पर लोडिंग स्टेट दिखाएं
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Transmitting Parameters Under NDA...</span>';
+        submitBtn.disabled = true;
+
+        // फॉर्म से डेटा कलेक्ट करें
+        const payload = {
+          company: mandateForm.querySelector('input[name="company"]').value,
+          email: mandateForm.querySelector('input[name="email"]').value,
+          landscape: mandateForm.querySelector('select[name="landscape"]').value,
+          scope: mandateForm.querySelector('select[name="scope"]').value,
+          notes: mandateForm.querySelector('textarea[name="notes"]').value
+        };
+
+        try {
+          await fetch(GOOGLE_WEBAPP_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          // सबमिट होने के बाद साफ और प्रोफेशनल कन्फर्मेशन कार्ड
+          mandateForm.innerHTML = `
+            <div class="p-8 text-center space-y-4 bg-emerald-50/80 rounded-2xl border border-emerald-300 shadow-sm animate-fade-in">
+              <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner">
+                <i class="fa-solid fa-shield-check"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900">Statutory Scoping Mandate Transmitted</h3>
+              <p class="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto leading-relaxed">
+                Your enterprise parameters have been securely logged under bilateral Mutual NDA protocol. Our Principal SAP Security & GRC Architect will review your target scope and initiate formal execution documentation within 24 business hours.
+              </p>
+              <div class="pt-3 border-t border-emerald-200 text-[11px] font-mono text-emerald-800">
+                <span>Engagement Status: <strong>PENDING ARCHITECT REVIEW</strong></span>
+              </div>
+            </div>
+          `;
+        } catch (error) {
+          alert('Submission error. Please email us directly at contact@corevaultadvisory.in');
+          submitBtn.innerHTML = originalBtnHTML;
+          submitBtn.disabled = false;
+        }
+      });
     }
   </script>
 </body>
