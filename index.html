@@ -1040,7 +1040,7 @@
         <span class="text-sm font-bold text-slate-900 tracking-tight">CoreVault Advisory Services</span>
       </div>
 
-      <p>&copy; 2026 CoreVault Advisory Services. All enterprise audit rights reserved.</p>
+      <p>&copy; <span id="copyrightYear">2026</span> CoreVault Advisory Services. All enterprise audit rights reserved.</p>
       
       <p class="max-w-3xl mx-auto leading-relaxed text-slate-400 text-[11px]">
         SAP, SAP ECC, SAP S/4HANA, SAP BTP, and related SAP product marks are registered trademarks of SAP SE in Germany and globally. CoreVault Advisory Services is an independent technical compliance practice providing external validation and software asset optimization services.
@@ -1291,6 +1291,10 @@
       }
       });
     }
+    const yearEl = document.getElementById('copyrightYear');
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
   </script>
 </body>
 </html>
