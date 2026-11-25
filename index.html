@@ -1020,9 +1020,16 @@
 
         </form>
 
-        <div class="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <span>Direct Advisory Channel: <strong class="text-slate-900 font-mono">contact@corevaultadvisory.in</strong></span>
-          <span>Lead SAP Architect: <strong class="text-slate-900 font-semibold">Akash Singh</strong></span>
+        <div class="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-600 gap-4">
+          <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-5">
+            <span>Direct Advisory: <strong class="text-slate-900 font-mono">contact@corevaultadvisory.in</strong></span>
+            <span class="hidden sm:inline text-slate-300">|</span>
+            <span class="flex items-center gap-1.5">
+              <i class="fa-solid fa-location-dot text-brand-600"></i>
+              <span>Practice Base: <strong class="text-slate-900">New Delhi / NCR, India</strong></span>
+            </span>
+          </div>
+          <span>Lead Architect: <strong class="text-slate-900 font-semibold">Akash Singh</strong></span>
         </div>
 
       </div>
@@ -1031,20 +1038,62 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-white border-t border-slate-200 py-12 px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 space-y-4">
-    <div class="max-w-7xl mx-auto space-y-4">
-      <div class="flex items-center justify-center space-x-2">
-        <div class="w-6 h-6 bg-brand-600 text-white rounded-lg flex items-center justify-center">
-          <i class="fa-solid fa-shield-halved text-xs"></i>
+  <footer class="bg-slate-900 text-slate-300 border-t border-slate-800 py-14 px-4 sm:px-6 lg:px-8 text-xs">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-12 gap-8 pb-10 border-b border-slate-800 text-left">
+        <div class="md:col-span-5 space-y-3">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-7 h-7 bg-brand-600 text-white rounded-lg flex items-center justify-center">
+              <i class="fa-solid fa-shield-halved text-xs"></i>
+            </div>
+            <span class="text-base font-bold text-white tracking-tight">CoreVault Advisory Services</span>
+          </div>
+          <p class="text-slate-400 leading-relaxed max-w-sm">
+            Independent SAP technical assurance practice specializing in Level-2 Segregation of Duties (SoD) diagnostics, Clean Core table forensics, role re-engineering, and USMM/LAW license optimization.
+          </p>
+          <div class="pt-1">
+            <a href="https://www.linkedin.com/company/corevault-advisory-services/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition font-medium">
+              <i class="fa-brands fa-linkedin text-brand-400 text-sm"></i>
+              <span>Official LinkedIn Page</span>
+            </a>
+          </div>
         </div>
-        <span class="text-sm font-bold text-slate-900 tracking-tight">CoreVault Advisory Services</span>
+
+        <div class="md:col-span-4 space-y-2.5">
+          <h4 class="text-white font-semibold uppercase tracking-wider text-[11px] font-mono">Practice &amp; Delivery</h4>
+          <ul class="space-y-2 text-slate-400">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-location-dot text-brand-400 mt-0.5"></i>
+              <span>New Delhi / NCR, India<br><span class="text-[11px] text-slate-500">Air-Gapped Remote &amp; On-Site Advisory</span></span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-envelope text-brand-400"></i>
+              <a href="mailto:contact@corevaultadvisory.in" class="hover:text-white transition font-mono">contact@corevaultadvisory.in</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-clock text-brand-400"></i>
+              <span>Mon – Fri | 09:30 – 19:00 IST</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-3 space-y-2.5">
+          <h4 class="text-white font-semibold uppercase tracking-wider text-[11px] font-mono">Governance &amp; Trust</h4>
+          <ul class="space-y-2 text-slate-400">
+            <li><a href="#architecture" class="hover:text-white transition">Zero-RFC Air-Gap Protocol</a></li>
+            <li><a href="#verify" class="hover:text-white transition">SHA-256 Deliverable Verification</a></li>
+            <li><span>7-Day Post-Audit Data Purge</span></li>
+            <li><span>Jurisdiction: New Delhi, India</span></li>
+          </ul>
+        </div>
       </div>
 
-      <p>&copy; <span id="copyrightYear">2026</span> CoreVault Advisory Services. All enterprise audit rights reserved.</p>
-      
-      <p class="max-w-3xl mx-auto leading-relaxed text-slate-400 text-[11px]">
-        SAP, SAP ECC, SAP S/4HANA, SAP BTP, and related SAP product marks are registered trademarks of SAP SE in Germany and globally. CoreVault Advisory Services is an independent technical compliance practice providing external validation and software asset optimization services.
-      </p>
+      <div class="pt-8 text-center space-y-3 text-slate-400">
+        <p>&copy; <span id="copyrightYear">2026</span> CoreVault Advisory Services. All enterprise audit rights reserved.</p>
+        <p class="max-w-4xl mx-auto leading-relaxed text-slate-500 text-[11px]">
+          SAP, SAP ECC, SAP S/4HANA, SAP BTP, and related SAP product marks are registered trademarks of SAP SE in Germany and globally. CoreVault Advisory Services is an independent technical compliance practice providing external validation and software asset optimization services.
+        </p>
+      </div>
     </div>
   </footer>
 
