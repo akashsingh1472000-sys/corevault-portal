@@ -230,6 +230,9 @@
         nextAuditDate: document.getElementById('nextAuditDate').value.trim() || 'Not Specified'
       };
 
+      const clientTicketId = `CRV-AUD-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+      payload.generatedTicketId = clientTicketId;
+
       try {
         await fetch(GOOGLE_WEBAPP_URL, {
           method: 'POST',
