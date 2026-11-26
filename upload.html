@@ -42,7 +42,11 @@
         </p>
       </div>
 
-      <div class="grid sm:grid-cols-2 gap-4">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-xs font-bold uppercase text-emerald-700 mb-1.5">Audit Ticket ID *</label>
+          <input type="text" id="ticketId" placeholder="e.g. CRV-AUD-2026-1005" class="w-full border border-emerald-300 bg-emerald-50/40 rounded-xl px-3.5 py-2.5 text-sm font-mono font-bold text-slate-900 focus:outline-none focus:border-emerald-600">
+        </div>
         <div>
           <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Organization / Case ID *</label>
           <input type="text" id="clientName" required placeholder="e.g. Acme Global Industries" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
@@ -95,6 +99,7 @@
 
     // Auto-fill if redirected from intake.html
     const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('ticket')) document.getElementById('ticketId').value = urlParams.get('ticket');
     if (urlParams.get('client')) document.getElementById('clientName').value = urlParams.get('client');
     if (urlParams.get('sid')) document.getElementById('systemSid').value = urlParams.get('sid');
 
@@ -123,6 +128,7 @@
     });
 
     async function packageAndTransmit() {
+      const ticket = document.getElementById('ticketId').value.trim();
       const client = document.getElementById('clientName').value.trim();
       const sid = document.getElementById('systemSid').value.trim();
       if (!client || !sid) {
@@ -138,7 +144,8 @@
       selectedFiles.forEach(file => zip.file(file.name, file));
 
       const zipBase64 = await zip.generateAsync({ type: 'base64', compression: 'DEFLATE' });
-      const fileName = `${client.replace(/[^a-zA-Z0-9_-]/g, '_')}_${sid.replace(/[^a-zA-Z0-9_-]/g, '_')}_Extracts.zip`;
+      const prefix = ticket ? `${ticket.replace(/[^a-zA-Z0-9_-]/g, '_')}_` : '';
+      const fileName = `${prefix}${client.replace(/[^a-zA-Z0-9_-]/g, '_')}_${sid.replace(/[^a-zA-Z0-9_-]/g, '_')}_Extracts.zip`;
 
       try {
         await fetch(GOOGLE_WEBAPP_URL, {
@@ -147,6 +154,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             action: 'UPLOAD_AUDIT_ZIP',
+            ticketId: ticket,
             clientName: client,
             sid: sid,
             fileName: fileName,
