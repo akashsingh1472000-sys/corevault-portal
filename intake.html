@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoreVault Advisory | Client Engagement & License Intake</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-slate-900 text-white py-4 px-6 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 bg-sky-600 rounded-lg flex items-center justify-center">
+          <i class="fa-solid fa-shield-halved text-sm"></i>
+        </div>
+        <div>
+          <span class="font-bold tracking-tight block leading-none">CoreVault Advisory Services</span>
+          <span class="text-[11px] text-slate-400 font-mono">CLIENT ONBOARDING &amp; LICENSING BASELINE</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">STEP 1 OF 2 • CLIENT INTAKE</span>
+        <a href="upload.html" class="text-xs text-sky-300 hover:text-white underline">Skip to Upload</a>
+        <a href="index.html" class="text-xs text-slate-300 hover:text-white underline">Home</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Intake Card -->
+  <main class="max-w-3xl w-full mx-auto px-4 py-10">
+    <form id="intakeForm" class="bg-white rounded-3xl border border-slate-200 shadow-lg p-6 sm:p-10 space-y-7">
+      
+      <div class="space-y-1.5 border-b border-slate-100 pb-4">
+        <h1 class="text-2xl font-extrabold text-slate-900">Client Audit &amp; Licensing Intake Profile</h1>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          Provide your legal entity details, target SAP landscape parameters, and commercial licensing benchmarks to calibrate NDA, SOW, and ROI deliverables.
+        </p>
+      </div>
+
+      <!-- Section 1: Legal & Contact -->
+      <div class="space-y-4">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-sky-700 flex items-center gap-2">
+          <i class="fa-solid fa-building"></i> 1. Legal Entity &amp; Governance Contacts
+        </h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Client Legal Entity Name *</label>
+            <input type="text" id="clientName" required placeholder="e.g. Acme Global Industries Pvt. Ltd." class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Operating City / Jurisdiction *</label>
+            <input type="text" id="clientCity" required placeholder="e.g. Mumbai, India" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Primary Contact Name &amp; Title *</label>
+            <input type="text" id="contactPerson" required placeholder="e.g. Rajesh Sharma, CISO / SAP Lead" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Official Corporate Email *</label>
+            <input type="email" id="contactEmail" required placeholder="e.g. rajesh.sharma@company.com" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: SAP System & Scope -->
+      <div class="space-y-4 border-t border-slate-100 pt-5">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-sky-700 flex items-center gap-2">
+          <i class="fa-solid fa-server"></i> 2. Target SAP Landscape &amp; Audit Scope
+        </h2>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Target SAP SID *</label>
+            <input type="text" id="targetSid" required maxlength="10" placeholder="e.g. PRD / S4P" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm uppercase focus:outline-none focus:border-sky-600">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Active Dialog User Base</label>
+            <select id="userTier" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
+              <option value="Up to 500 Users (Standard)">Up to 500 Users</option>
+              <option value="501 - 2,000 Users (Mid-Enterprise)">501 – 2,000 Users</option>
+              <option value="2,000+ Users (Large Enterprise)">2,000+ Users</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Data Purge Window</label>
+            <select id="purgeWindow" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
+              <option value="7 Business Days">7 Business Days</option>
+              <option value="14 Business Days">14 Business Days</option>
+              <option value="30 Days">30 Days</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Commissioned Diagnostic Modules</label>
+          <div class="grid sm:grid-cols-2 gap-2.5 text-xs font-medium">
+            <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 cursor-pointer">
+              <input type="checkbox" name="mod" value="Phase 1: Custom Code & Table Security" checked class="accent-sky-600">
+              <span>Phase 1: Custom Code &amp; Table Security</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 cursor-pointer">
+              <input type="checkbox" name="mod" value="Phase 2: SoD Risk Engine (GUI + Fiori)" checked class="accent-sky-600">
+              <span>Phase 2: SoD Risk Engine (GUI + Fiori)</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 cursor-pointer">
+              <input type="checkbox" name="mod" value="Phase 3: Role Remediation & Splitting" class="accent-sky-600">
+              <span>Phase 3: Role Remediation &amp; Splitting</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 cursor-pointer">
+              <input type="checkbox" name="mod" value="Phase 4: SAP License Cost Optimizer" checked class="accent-sky-600">
+              <span>Phase 4: SAP License Cost Optimizer</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Commercial Licensing Benchmarks -->
+      <div class="space-y-4 border-t border-slate-100 pt-5">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-2">
+          <i class="fa-solid fa-coins"></i> 3. Commercial Licensing Benchmarks (For Financial ROI Model)
+        </h2>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Contract Model</label>
+            <select id="licenseModel" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
+              <option value="Named User (ECC / S/4HANA On-Prem)">Named User (On-Prem)</option>
+              <option value="FUE (RISE with SAP / Cloud)">FUE (RISE with SAP)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Commercial Currency</label>
+            <select id="currency" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
+              <option value="INR">INR (₹)</option>
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="GBP">GBP (£)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Dormancy Window</label>
+            <select id="dormancyDays" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
+              <option value="90" selected>90 Days (Standard)</option>
+              <option value="60">60 Days</option>
+              <option value="120">120 Days</option>
+              <option value="180">180 Days</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Professional Rate / Yr</label>
+            <input type="number" id="costProf" placeholder="e.g. 250000" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Limited Pro Rate / Yr</label>
+            <input type="number" id="costLim" placeholder="e.g. 100000" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Employee / ESS Rate / Yr</label>
+            <input type="number" id="costEss" placeholder="e.g. 20000" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Purchased License Entitlements</label>
+            <input type="text" id="purchasedCounts" placeholder="e.g. 150 Prof, 300 Limited, 600 ESS" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Next SAP Audit / Renewal Date</label>
+            <input type="text" id="nextAuditDate" placeholder="e.g. March 2027" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" id="submitBtn" class="w-full py-4 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-sm uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-md cursor-pointer">
+        <span>Save Profile &amp; Proceed to Step 2 (Upload Portal)</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <div id="statusMsg" class="hidden"></div>
+    </form>
+  </main>
+
+  <footer class="text-center text-xs text-slate-400 py-6">
+    &copy; 2026 CoreVault Advisory Services • Bilateral Mutual NDA Protected Onboarding
+  </footer>
+
+  <script>
+    const GOOGLE_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzwCqmKBVgIsE0XtI8GXcmQjJdtY-2GrfOmWV5VsURI3AUxrz2eqZmvrAGdIjozGkAIRQ/exec';
+
+    document.getElementById('intakeForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const status = document.getElementById('statusMsg');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Recording Engagement Profile...</span>';
+
+      const mods = Array.from(document.querySelectorAll('input[name="mod"]:checked')).map(c => c.value).join(', ');
+      const clientName = document.getElementById('clientName').value.trim();
+      const targetSid = document.getElementById('targetSid').value.trim().toUpperCase();
+
+      const payload = {
+        action: 'CLIENT_INTAKE_FORM',
+        clientName: clientName,
+        clientCity: document.getElementById('clientCity').value.trim(),
+        contactPerson: document.getElementById('contactPerson').value.trim(),
+        contactEmail: document.getElementById('contactEmail').value.trim(),
+        sid: targetSid,
+        userTier: document.getElementById('userTier').value,
+        purgeWindow: document.getElementById('purgeWindow').value,
+        selectedModules: mods || 'Standard Diagnostic',
+        licenseModel: document.getElementById('licenseModel').value,
+        currency: document.getElementById('currency').value,
+        dormancyDays: document.getElementById('dormancyDays').value,
+        costProf: document.getElementById('costProf').value || 'List Price Benchmark',
+        costLim: document.getElementById('costLim').value || 'List Price Benchmark',
+        costEss: document.getElementById('costEss').value || 'List Price Benchmark',
+        purchasedCounts: document.getElementById('purchasedCounts').value.trim() || 'Not Specified',
+        nextAuditDate: document.getElementById('nextAuditDate').value.trim() || 'Not Specified'
+      };
+
+      try {
+        await fetch(GOOGLE_WEBAPP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        status.className = 'p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs text-center font-semibold';
+        status.innerHTML = '✓ Engagement profile saved! Redirecting to Step 2 (14-Catalog Upload Portal)...';
+        status.classList.remove('hidden');
+
+        setTimeout(() => {
+          window.location.href = `upload.html?client=${encodeURIComponent(clientName)}&sid=${encodeURIComponent(targetSid)}`;
+        }, 1100);
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = '<span>Save Profile &amp; Proceed to Step 2 (Upload Portal)</span> <i class="fa-solid fa-arrow-right"></i>';
+        alert('Submission error. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
