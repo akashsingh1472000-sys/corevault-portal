@@ -24,8 +24,9 @@
         </div>
       </div>
       <div class="flex items-center gap-3">
-        <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">ZERO-RFC PROTOCOL</span>
-        <a href="index.html" class="text-xs text-slate-300 hover:text-white underline">Back to Home</a>
+        <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">STEP 2 OF 2 • VAULT UPLOAD</span>
+        <a href="intake.html" class="text-xs text-sky-300 hover:text-white underline">Step 1: Intake Form</a>
+        <a href="index.html" class="text-xs text-slate-300 hover:text-white underline">Home</a>
       </div>
     </div>
   </header>
@@ -54,17 +55,17 @@
 
       <!-- Dropzone -->
       <div class="border-2 border-dashed border-slate-300 hover:border-sky-500 rounded-2xl p-8 text-center bg-slate-50/60 transition cursor-pointer" onclick="document.getElementById('csvInput').click()">
-        <input type="file" id="csvInput" multiple accept=".csv" class="hidden">
+        <input type="file" id="csvInput" multiple accept=".csv,.xlsx,.xls" class="hidden">
         <i class="fa-solid fa-folder-open text-3xl text-sky-600 mb-3"></i>
         <p class="text-sm font-semibold text-slate-800">Click here to select all exported CSV files (Ctrl + A inside export folder)</p>
-        <p class="text-xs text-slate-500 mt-1">Supports all 11 CoreVault SAP Security &amp; Licensing extracts</p>
+        <p class="text-xs text-slate-500 mt-1">Supports all 14 CoreVault SAP Security, Clean Core &amp; Licensing extracts</p>
       </div>
 
       <!-- Validation Checklist -->
       <div id="checklistBox" class="hidden space-y-3 bg-slate-50 p-5 rounded-2xl border border-slate-200">
         <div class="flex justify-between items-center text-xs font-bold text-slate-700 uppercase">
           <span>Extract Completeness Verification</span>
-          <span id="countBadge" class="font-mono text-sky-700">0 / 11 Detected</span>
+          <span id="countBadge" class="font-mono text-sky-700">0 / 14 Detected</span>
         </div>
         <div id="tableStatusGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-mono"></div>
       </div>
@@ -88,8 +89,14 @@
     const REQUIRED_TABLES = [
       'AGR_USERS.csv', 'AGR_1251.csv', 'AGR_1252.csv', 'AGR_AGRS.csv',
       'AGR_DEFINE.csv', 'AGR_TCODES.csv', 'USR02.csv', 'TSTC.csv',
-      'TSTCT.csv', 'AGR_BUFFI.csv', 'UST04.csv'
+      'TSTCT.csv', 'AGR_BUFFI.csv', 'UST04.csv', 'USR06.csv',
+      'USLA04.csv', 'ST03N.csv'
     ];
+
+    // Auto-fill if redirected from intake.html
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('client')) document.getElementById('clientName').value = urlParams.get('client');
+    if (urlParams.get('sid')) document.getElementById('systemSid').value = urlParams.get('sid');
 
     let selectedFiles = [];
 
@@ -110,7 +117,7 @@
           </div>`;
       });
 
-      document.getElementById('countBadge').innerText = `${matchedCount} / 11 Core Tables Detected`;
+      document.getElementById('countBadge').innerText = `${matchedCount} / 14 Core Catalogs Detected`;
       document.getElementById('checklistBox').classList.remove('hidden');
       document.getElementById('uploadBtn').disabled = selectedFiles.length === 0;
     });
