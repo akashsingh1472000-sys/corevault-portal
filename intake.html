@@ -32,158 +32,163 @@
 
   <!-- Main Intake Card -->
   <main class="max-w-3xl w-full mx-auto px-4 py-10">
-    <form id="intakeForm" class="bg-white rounded-3xl border border-slate-200 shadow-lg p-6 sm:p-10 space-y-7">
-      
-      <div class="space-y-1.5 border-b border-slate-100 pb-4">
-        <h1 class="text-2xl font-extrabold text-slate-900">Client Audit &amp; Licensing Intake Profile</h1>
-        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-          Provide your legal entity details, target SAP landscape parameters, and commercial licensing benchmarks to calibrate NDA, SOW, and ROI deliverables.
-        </p>
-      </div>
-
-      <!-- Section 1: Legal & Contact -->
-      <div class="space-y-4">
-        <h2 class="text-xs font-bold uppercase tracking-wider text-sky-700 flex items-center gap-2">
-          <i class="fa-solid fa-building"></i> 1. Legal Entity &amp; Governance Contacts
-        </h2>
-        <div class="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Client Legal Entity Name *</label>
-            <input type="text" id="clientName" required placeholder="e.g. Acme Global Industries Pvt. Ltd." class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
-          </div>
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Operating City / Jurisdiction *</label>
-            <input type="text" id="clientCity" required placeholder="e.g. Mumbai, India" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
-          </div>
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Primary Contact Name &amp; Title *</label>
-            <input type="text" id="contactPerson" required placeholder="e.g. Rajesh Sharma, CISO / SAP Lead" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
-          </div>
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Official Corporate Email *</label>
-            <input type="email" id="contactEmail" required placeholder="e.g. rajesh.sharma@company.com" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
-          </div>
+    <div id="intakeContainer" class="bg-white rounded-3xl border border-slate-200 shadow-lg p-6 sm:p-10">
+      <form id="intakeForm" class="space-y-7">
+        
+        <div class="space-y-1.5 border-b border-slate-100 pb-4">
+          <h1 class="text-2xl font-extrabold text-slate-900">Client Audit &amp; Licensing Intake Profile</h1>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Provide your legal entity details, target SAP landscape parameters, and commercial licensing benchmarks to calibrate NDA, SOW, and ROI deliverables.
+          </p>
         </div>
-      </div>
 
-      <!-- Section 2: SAP System & Scope -->
-      <div class="space-y-4 border-t border-slate-100 pt-5">
-        <h2 class="text-xs font-bold uppercase tracking-wider text-sky-700 flex items-center gap-2">
-          <i class="fa-solid fa-server"></i> 2. Target SAP Landscape &amp; Audit Scope
-        </h2>
-        <div class="grid sm:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Target SAP SID *</label>
-            <input type="text" id="targetSid" required maxlength="10" placeholder="e.g. PRD / S4P" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm uppercase focus:outline-none focus:border-sky-600">
+        <!-- Section 1: Legal & Contact -->
+        <div class="space-y-4">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-sky-700 flex items-center gap-2">
+            <i class="fa-solid fa-building"></i> 1. Legal Entity &amp; Governance Contacts
+          </h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Client Legal Entity Name *</label>
+              <input type="text" id="clientName" required placeholder="e.g. Acme Global Industries Pvt. Ltd." class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Operating City / Jurisdiction *</label>
+              <input type="text" id="clientCity" required placeholder="e.g. Mumbai, India" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Primary Contact Name &amp; Title *</label>
+              <input type="text" id="contactPerson" required placeholder="e.g. Rajesh Sharma, CISO / SAP Lead" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Official Corporate Email *</label>
+              <input type="email" id="contactEmail" required placeholder="e.g. rajesh.sharma@company.com" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+            </div>
           </div>
           <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Active Dialog User Base</label>
-            <select id="userTier" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
-              <option value="Up to 500 Users (Standard)">Up to 500 Users</option>
-              <option value="501 - 2,000 Users (Mid-Enterprise)">501 – 2,000 Users</option>
-              <option value="2,000+ Users (Large Enterprise)">2,000+ Users</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Data Purge Window</label>
-            <select id="purgeWindow" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
-              <option value="7 Business Days">7 Business Days</option>
-              <option value="14 Business Days">14 Business Days</option>
-              <option value="30 Days">30 Days</option>
-            </select>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Existing Scoping Ticket ID (Optional)</label>
+            <input type="text" id="existingTicket" placeholder="e.g. CRV-2026-1005 (Leave blank to auto-generate new Audit Ticket ID)" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm font-mono uppercase focus:outline-none focus:border-sky-600">
           </div>
         </div>
 
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Commissioned Diagnostic Modules</label>
-          <div class="grid sm:grid-cols-2 gap-2.5 text-xs font-medium">
-            <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 cursor-pointer">
-              <input type="checkbox" name="mod" value="Phase 1: Custom Code & Table Security" checked class="accent-sky-600">
-              <span>Phase 1: Custom Code &amp; Table Security</span>
-            </label>
-            <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 cursor-pointer">
-              <input type="checkbox" name="mod" value="Phase 2: SoD Risk Engine (GUI + Fiori)" checked class="accent-sky-600">
-              <span>Phase 2: SoD Risk Engine (GUI + Fiori)</span>
-            </label>
-            <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 cursor-pointer">
-              <input type="checkbox" name="mod" value="Phase 3: Role Remediation & Splitting" class="accent-sky-600">
-              <span>Phase 3: Role Remediation &amp; Splitting</span>
-            </label>
-            <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 cursor-pointer">
-              <input type="checkbox" name="mod" value="Phase 4: SAP License Cost Optimizer" checked class="accent-sky-600">
-              <span>Phase 4: SAP License Cost Optimizer</span>
-            </label>
+        <!-- Section 2: SAP System & Scope -->
+        <div class="space-y-4 border-t border-slate-100 pt-5">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-sky-700 flex items-center gap-2">
+            <i class="fa-solid fa-server"></i> 2. Target SAP Landscape &amp; Audit Scope
+          </h2>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Target SAP SID *</label>
+              <input type="text" id="targetSid" required maxlength="10" placeholder="e.g. PRD / S4P" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm uppercase focus:outline-none focus:border-sky-600">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Active Dialog User Base</label>
+              <select id="userTier" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
+                <option value="Up to 500 Users (Standard)">Up to 500 Users</option>
+                <option value="501 - 2,000 Users (Mid-Enterprise)">501 – 2,000 Users</option>
+                <option value="2,000+ Users (Large Enterprise)">2,000+ Users</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Data Purge Window</label>
+              <select id="purgeWindow" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
+                <option value="7 Business Days">7 Business Days</option>
+                <option value="14 Business Days">14 Business Days</option>
+                <option value="30 Days">30 Days</option>
+              </select>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Section 3: Commercial Licensing Benchmarks -->
-      <div class="space-y-4 border-t border-slate-100 pt-5">
-        <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-2">
-          <i class="fa-solid fa-coins"></i> 3. Commercial Licensing Benchmarks (For Financial ROI Model)
-        </h2>
-        <div class="grid sm:grid-cols-3 gap-4">
           <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Contract Model</label>
-            <select id="licenseModel" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
-              <option value="Named User (ECC / S/4HANA On-Prem)">Named User (On-Prem)</option>
-              <option value="FUE (RISE with SAP / Cloud)">FUE (RISE with SAP)</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Commercial Currency</label>
-            <select id="currency" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
-              <option value="INR">INR (₹)</option>
-              <option value="USD">USD ($)</option>
-              <option value="EUR">EUR (€)</option>
-              <option value="GBP">GBP (£)</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Dormancy Window</label>
-            <select id="dormancyDays" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
-              <option value="90" selected>90 Days (Standard)</option>
-              <option value="60">60 Days</option>
-              <option value="120">120 Days</option>
-              <option value="180">180 Days</option>
-            </select>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Commissioned Diagnostic Modules</label>
+            <div class="grid sm:grid-cols-2 gap-2.5 text-xs font-medium">
+              <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 cursor-pointer">
+                <input type="checkbox" name="mod" value="Phase 1: Custom Code & Table Security" checked class="accent-sky-600">
+                <span>Phase 1: Custom Code &amp; Table Security</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 cursor-pointer">
+                <input type="checkbox" name="mod" value="Phase 2: SoD Risk Engine (GUI + Fiori)" checked class="accent-sky-600">
+                <span>Phase 2: SoD Risk Engine (GUI + Fiori)</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 cursor-pointer">
+                <input type="checkbox" name="mod" value="Phase 3: Role Remediation & Splitting" class="accent-sky-600">
+                <span>Phase 3: Role Remediation &amp; Splitting</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 cursor-pointer">
+                <input type="checkbox" name="mod" value="Phase 4: SAP License Cost Optimizer" checked class="accent-sky-600">
+                <span>Phase 4: SAP License Cost Optimizer</span>
+              </label>
+            </div>
           </div>
         </div>
 
-        <div class="grid sm:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Professional Rate / Yr</label>
-            <input type="number" id="costProf" placeholder="e.g. 250000" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+        <!-- Section 3: Commercial Licensing Benchmarks -->
+        <div class="space-y-4 border-t border-slate-100 pt-5">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-2">
+            <i class="fa-solid fa-coins"></i> 3. Commercial Licensing Benchmarks (For Financial ROI Model)
+          </h2>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Contract Model</label>
+              <select id="licenseModel" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
+                <option value="Named User (ECC / S/4HANA On-Prem)">Named User (On-Prem)</option>
+                <option value="FUE (RISE with SAP / Cloud)">FUE (RISE with SAP)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Commercial Currency</label>
+              <select id="currency" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
+                <option value="INR">INR (₹)</option>
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Dormancy Window</label>
+              <select id="dormancyDays" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-white focus:outline-none focus:border-sky-600">
+                <option value="90" selected>90 Days (Standard)</option>
+                <option value="60">60 Days</option>
+                <option value="120">120 Days</option>
+                <option value="180">180 Days</option>
+              </select>
+            </div>
           </div>
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Limited Pro Rate / Yr</label>
-            <input type="number" id="costLim" placeholder="e.g. 100000" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Professional Rate / Yr</label>
+              <input type="number" id="costProf" placeholder="e.g. 250000" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Limited Pro Rate / Yr</label>
+              <input type="number" id="costLim" placeholder="e.g. 100000" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Employee / ESS Rate / Yr</label>
+              <input type="number" id="costEss" placeholder="e.g. 20000" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+            </div>
           </div>
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Employee / ESS Rate / Yr</label>
-            <input type="number" id="costEss" placeholder="e.g. 20000" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Purchased License Entitlements</label>
+              <input type="text" id="purchasedCounts" placeholder="e.g. 150 Prof, 300 Limited, 600 ESS" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Next SAP Audit / Renewal Date</label>
+              <input type="text" id="nextAuditDate" placeholder="e.g. March 2027" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+            </div>
           </div>
         </div>
 
-        <div class="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Purchased License Entitlements</label>
-            <input type="text" id="purchasedCounts" placeholder="e.g. 150 Prof, 300 Limited, 600 ESS" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
-          </div>
-          <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">Next SAP Audit / Renewal Date</label>
-            <input type="text" id="nextAuditDate" placeholder="e.g. March 2027" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
-          </div>
-        </div>
-      </div>
+        <button type="submit" id="submitBtn" class="w-full py-4 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-sm uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-md cursor-pointer">
+          <i class="fa-solid fa-lock text-xs"></i>
+          <span>Generate Audit Ticket &amp; Save Profile</span>
+        </button>
 
-      <button type="submit" id="submitBtn" class="w-full py-4 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-sm uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-md cursor-pointer">
-        <span>Save Profile &amp; Proceed to Step 2 (Upload Portal)</span>
-        <i class="fa-solid fa-arrow-right"></i>
-      </button>
-
-      <div id="statusMsg" class="hidden"></div>
-    </form>
+      </form>
+    </div>
   </main>
 
   <footer class="text-center text-xs text-slate-400 py-6">
@@ -196,20 +201,21 @@
     document.getElementById('intakeForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const btn = document.getElementById('submitBtn');
-      const status = document.getElementById('statusMsg');
       btn.disabled = true;
       btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Recording Engagement Profile...</span>';
 
       const mods = Array.from(document.querySelectorAll('input[name="mod"]:checked')).map(c => c.value).join(', ');
       const clientName = document.getElementById('clientName').value.trim();
       const targetSid = document.getElementById('targetSid').value.trim().toUpperCase();
+      const contactEmail = document.getElementById('contactEmail').value.trim();
 
       const payload = {
         action: 'CLIENT_INTAKE_FORM',
         clientName: clientName,
         clientCity: document.getElementById('clientCity').value.trim(),
         contactPerson: document.getElementById('contactPerson').value.trim(),
-        contactEmail: document.getElementById('contactEmail').value.trim(),
+        contactEmail: contactEmail,
+        existingTicket: document.getElementById('existingTicket').value.trim().toUpperCase(),
         sid: targetSid,
         userTier: document.getElementById('userTier').value,
         purgeWindow: document.getElementById('purgeWindow').value,
@@ -232,17 +238,31 @@
           body: JSON.stringify(payload)
         });
 
-        status.className = 'p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs text-center font-semibold';
-        status.innerHTML = '✓ Engagement profile saved! Redirecting to Step 2 (14-Catalog Upload Portal)...';
-        status.classList.remove('hidden');
+        const nextUrl = `upload.html?client=${encodeURIComponent(clientName)}&sid=${encodeURIComponent(targetSid)}`;
 
-        setTimeout(() => {
-          window.location.href = `upload.html?client=${encodeURIComponent(clientName)}&sid=${encodeURIComponent(targetSid)}`;
-        }, 1100);
+        document.getElementById('intakeContainer').innerHTML = `
+          <div class="p-8 text-center space-y-5 bg-gradient-to-b from-slate-900 to-slate-950 rounded-2xl border border-emerald-500/40 shadow-2xl text-white">
+            <div class="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 rounded-full flex items-center justify-center mx-auto text-3xl font-black">✓</div>
+            <span class="text-[10px] tracking-widest uppercase font-mono px-3 py-1 bg-emerald-500/10 text-emerald-300 rounded-full border border-emerald-500/30">Statutory Registry Sealed • Step 1 Complete</span>
+            <h3 class="text-xl sm:text-2xl font-bold text-white pt-2">Audit Ticket Issued &amp; Profile Locked</h3>
+            <p class="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto leading-relaxed">
+              Parameters for <strong class="text-white">${clientName}</strong> (<code class="text-sky-400">${targetSid}</code>) are locked under Mutual NDA. An official Audit Ticket receipt has been sent to <strong class="text-emerald-300">${contactEmail}</strong>.
+            </p>
+            <div class="pt-2">
+              <a href="${nextUrl}" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm uppercase tracking-wider shadow-lg transition">
+                <span>Proceed to Step 2: Upload 14 SAP Extracts</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="text-[11px] font-mono text-slate-400 pt-2 border-t border-slate-800/80">
+              Audit Desk Channel: <span class="text-emerald-400 font-medium">audit@corevaultadvisory.in</span>
+            </div>
+          </div>
+        `;
       } catch (err) {
         btn.disabled = false;
-        btn.innerHTML = '<span>Save Profile &amp; Proceed to Step 2 (Upload Portal)</span> <i class="fa-solid fa-arrow-right"></i>';
-        alert('Submission error. Please try again.');
+        btn.innerHTML = '<i class="fa-solid fa-lock text-xs"></i> <span>Generate Audit Ticket &amp; Save Profile</span>';
+        alert('Submission error. Please try again or contact audit@corevaultadvisory.in');
       }
     });
   </script>
