@@ -124,7 +124,7 @@
     });
 
     async function packageAndTransmit() {
-      const ticket = document.getElementById('ticketId').value.trim();
+      const ticket = (urlParams.get('ticket') || '').trim();
       const client = document.getElementById('clientName').value.trim();
       const sid = document.getElementById('systemSid').value.trim();
       if (!client || !sid) {
