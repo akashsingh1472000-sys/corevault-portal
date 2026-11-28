@@ -95,7 +95,6 @@
 
     // Auto-fill if redirected from intake.html
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('ticket')) document.getElementById('ticketId').value = urlParams.get('ticket');
     if (urlParams.get('client')) document.getElementById('clientName').value = urlParams.get('client');
     if (urlParams.get('sid')) document.getElementById('systemSid').value = urlParams.get('sid');
 
